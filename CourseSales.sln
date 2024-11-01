@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6E3A74B0-77F6-4EF4-AE52-B564E605ACD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "catalog", "catalog", "{F8B6C6AD-79EB-4E6F-B4A5-F10ADCA4C7A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.Catalog.Api", "CourseSales.Catalog.Api\CourseSales.Catalog.Api.csproj", "{0F76C156-7CC1-4012-A6FB-CD1A655B166E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F76C156-7CC1-4012-A6FB-CD1A655B166E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F76C156-7CC1-4012-A6FB-CD1A655B166E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F76C156-7CC1-4012-A6FB-CD1A655B166E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F76C156-7CC1-4012-A6FB-CD1A655B166E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F8B6C6AD-79EB-4E6F-B4A5-F10ADCA4C7A3} = {6E3A74B0-77F6-4EF4-AE52-B564E605ACD4}
+		{0F76C156-7CC1-4012-A6FB-CD1A655B166E} = {F8B6C6AD-79EB-4E6F-B4A5-F10ADCA4C7A3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F81598A4-0889-415A-9C04-442E1F01F2D4}
+	EndGlobalSection
+EndGlobal
