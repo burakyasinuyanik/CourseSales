@@ -1,7 +1,7 @@
 ﻿using CourseSales.Catalog.Api.Features.Categories.Create;
 using CourseSales.Shared.Extensions;
+using CourseSales.Shared.Filters;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CourseSales.Catalog.Api.Features.Categories
 {
@@ -15,7 +15,7 @@ namespace CourseSales.Catalog.Api.Features.Categories
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
 
-            });
+            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
             return group;
         }

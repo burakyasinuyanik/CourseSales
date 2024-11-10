@@ -14,7 +14,7 @@ namespace CourseSales.Catalog.Api.Features.Categories.Create
             var existCategory = await context.Categories.AnyAsync(x => x.Name == request.Name, cancellationToken);
             if (existCategory)
             {
-                ServiceResult<CreateCategoryResponse>.Error("Category Mevcut", $"{request.Name} daha önce mevcut olan kategori ismi",
+              return  ServiceResult<CreateCategoryResponse>.Error("Category Mevcut", $"{request.Name} daha önce mevcut olan kategori ismi",
                     HttpStatusCode.BadRequest
                     );
             }
