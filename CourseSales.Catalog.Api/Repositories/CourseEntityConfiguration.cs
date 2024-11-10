@@ -23,7 +23,7 @@ namespace CourseSales.Catalog.Api.Repositories
 
             builder.Ignore(x => x.Category);
 
-            builder.OwnsOne(c => c.feature, feature =>
+            builder.OwnsOne(c => c.Feature, feature =>
             {
                 feature.HasElementName("feature");
                 feature.Property(x => x.Duration).HasElementName("duration");

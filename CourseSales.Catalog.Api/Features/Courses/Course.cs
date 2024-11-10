@@ -13,6 +13,6 @@ namespace CourseSales.Catalog.Api.Features.Courses
         public DateTime Created { get; set; }
         public Guid CategoryId { get; set; }
         public Category Category { get; set; } = default!;
-        public Feature feature { get; set; } = default!;
+        public Feature Feature { get; set; } = default!;
     }
 }

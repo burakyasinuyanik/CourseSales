@@ -16,7 +16,7 @@ namespace CourseSales.Catalog.Api.Repositories
             {
                 var mongoClient = sp.GetRequiredService<IMongoClient>();
                 var options = sp.GetRequiredService<MongoOption>();
-                return AppDbContext.Create(mongoClient.GetDatabase(options.DataBase));
+                return AppDbContext.Create(mongoClient.GetDatabase(options.DataBaseName));
             });
 
             return services;

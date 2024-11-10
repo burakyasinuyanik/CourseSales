@@ -14,7 +14,9 @@ namespace CourseSales.Catalog.Api.Repositories
 
         public static AppDbContext Create(IMongoDatabase database)
         {
-            var optionsBuilder=new DbContextOptionsBuilder<AppDbContext>().UseMongoDB(database.Client,database.DatabaseNamespace.DatabaseName)
+            var optionsBuilder =
+                new DbContextOptionsBuilder<AppDbContext>().UseMongoDB(database.Client,
+                    database.DatabaseNamespace.DatabaseName);
             return new AppDbContext(optionsBuilder.Options);
         }
 
