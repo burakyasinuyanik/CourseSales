@@ -1,7 +1,7 @@
+using CourseSales.Catalog.Api.Features.Categories;
 using CourseSales.Catalog.Api.Options;
 using CourseSales.Catalog.Api.Repositories;
-using Microsoft.Extensions.Options;
-using MongoDB.Driver;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +15,7 @@ builder.Services.AddDataBaseServiceExt();
 
 var app = builder.Build();
 
+app.AddCategoryGroupEndPointExt();
 
 if (app.Environment.IsDevelopment())
 {
