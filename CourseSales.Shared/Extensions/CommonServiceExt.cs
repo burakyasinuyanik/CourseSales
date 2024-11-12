@@ -12,6 +12,7 @@ namespace CourseSales.Shared.Extensions
             services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining(assembly));
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining(assembly);
+            services.AddAutoMapper(assembly);
             return services;
         }
     }
