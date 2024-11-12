@@ -1,6 +1,14 @@
-@CourseSales.Catalog.Api_HostAddress = http://localhost:5280
+@baseAdress = http://localhost:5280
 
-GET {{CourseSales.Catalog.Api_HostAddress}}/weatherforecast/
+GET {{baseAdress}}/api/categories
 Accept: application/json
+
+###
+post {{baseAdress}}/api/categories
+Accept: application/json
+Content-Type:application/json
+{
+  "name":"Category 1"
+}
 
 ###
