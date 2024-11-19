@@ -1,5 +1,5 @@
 @baseAdress = http://localhost:5280
-
+@CategoryId = 08dd01a9-2a70-e38c-4e49-6ce70ac70000
 GET {{baseAdress}}/api/categories
 Accept: application/json
 
@@ -10,5 +10,9 @@ Content-Type:application/json
 {
   "name":"Category 1"
 }
-
 ###
+
+Get {{baseAdress}}/api/categories/{{CategoryId}}
+Accept: application/json
+###
+

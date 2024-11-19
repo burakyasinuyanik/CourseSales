@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using MediatR;
 using Refit;
 using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 
@@ -126,7 +127,7 @@ namespace CourseSales.Shared
         }
 
     }
-    public class ServiceResult<T> : ServiceResult
+    public class ServiceResult<T> : ServiceResult, IRequest
     {
         public T? Data { get; set; }
         [JsonIgnore] public string? UrlAsCreated { get; set; }
