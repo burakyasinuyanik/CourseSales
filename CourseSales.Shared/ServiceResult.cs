@@ -8,6 +8,8 @@ using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 
 namespace CourseSales.Shared
 {
+    public interface IRequestByServiceResult<T> : IRequest<ServiceResult<T>>;
+    public interface IRequestByServiceResult : IRequest<ServiceResult>;
     public class ServiceResult
     {
         [JsonIgnore]

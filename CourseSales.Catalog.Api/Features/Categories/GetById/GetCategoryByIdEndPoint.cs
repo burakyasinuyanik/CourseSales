@@ -8,7 +8,7 @@ using MediatR;
 
 namespace CourseSales.Catalog.Api.Features.Categories.GetById
 {
-    public record GetCategoryByIdQuery(Guid Id) : IRequest<ServiceResult<CategoryDto>>;
+    public record GetCategoryByIdQuery(Guid Id) : IRequestByServiceResult<CategoryDto>;
     
 
     public class GetCategoryByIdQueryHandler(AppDbContext context,IMapper mapper):IRequestHandler<GetCategoryByIdQuery,ServiceResult<CategoryDto>>{

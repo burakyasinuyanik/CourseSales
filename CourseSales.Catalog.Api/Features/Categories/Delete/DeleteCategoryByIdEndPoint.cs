@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using AutoMapper;
+
 using CourseSales.Catalog.Api.Features.Categories.Dtos;
 using CourseSales.Catalog.Api.Repositories;
 using CourseSales.Shared;
@@ -8,9 +8,9 @@ using MediatR;
 
 namespace CourseSales.Catalog.Api.Features.Categories.Delete
 {
-    public record DeleteCategoryByIdQuery(Guid Id) : IRequest<ServiceResult>;
+    public record DeleteCategoryByIdQuery(Guid Id) : IRequestByServiceResult;
 
-    public  class DeleteCategoryByIdQueryHandler(AppDbContext context,IMapper mapper):IRequestHandler<DeleteCategoryByIdQuery,ServiceResult>
+    public  class DeleteCategoryByIdQueryHandler(AppDbContext context):IRequestHandler<DeleteCategoryByIdQuery,ServiceResult>
     {
         public async  Task<ServiceResult> Handle(DeleteCategoryByIdQuery request, CancellationToken cancellationToken)
         {
