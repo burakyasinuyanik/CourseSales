@@ -1,8 +1,6 @@
 ﻿using CourseSales.Catalog.Api.Features.Categories;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MongoDB.EntityFrameworkCore.Extensions;
-using System.Reflection.Emit;
 
 namespace CourseSales.Catalog.Api.Repositories
 {

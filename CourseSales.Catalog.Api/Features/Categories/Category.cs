@@ -1,5 +1,4 @@
 ﻿using CourseSales.Catalog.Api.Features.Courses;
-using CourseSales.Catalog.Api.Repositories;
 
 namespace CourseSales.Catalog.Api.Features.Categories
 {

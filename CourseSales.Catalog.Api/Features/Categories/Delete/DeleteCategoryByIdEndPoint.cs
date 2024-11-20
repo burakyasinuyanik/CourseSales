@@ -1,10 +1,4 @@
-﻿using System.Net;
-
-using CourseSales.Catalog.Api.Features.Categories.Dtos;
-using CourseSales.Catalog.Api.Repositories;
-using CourseSales.Shared;
-using CourseSales.Shared.Extensions;
-using MediatR;
+﻿using CourseSales.Catalog.Api.Features.Categories.Dtos;
 
 namespace CourseSales.Catalog.Api.Features.Categories.Delete
 {

@@ -1,7 +1,5 @@
 ﻿using CourseSales.Catalog.Api.Features.Categories.Create;
-using CourseSales.Shared.Extensions;
 using CourseSales.Shared.Filters;
-using MediatR;
 
 namespace CourseSales.Catalog.Api.Features.Categories
 {

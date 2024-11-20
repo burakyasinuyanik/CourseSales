@@ -1,9 +1,4 @@
-﻿using CourseSales.Catalog.Api.Repositories;
-using CourseSales.Shared;
-using MassTransit;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System.Net;
+﻿
 
 namespace CourseSales.Catalog.Api.Features.Categories.Create
 {

@@ -1,6 +1,5 @@
 ﻿using CourseSales.Catalog.Api.Features.Categories;
 using CourseSales.Catalog.Api.Features.Courses;
-using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using System.Reflection;
 
