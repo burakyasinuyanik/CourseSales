@@ -29,7 +29,8 @@ namespace CourseSales.Catalog.Api.Features.Categories.GetById
                 var result = await mediator.Send(new GetCategoryByIdQuery(id));
 
                 return result.ToGenericResult();
-            });
+            })
+            .WithName("GetById Category"); ;
             return group;
         }
     }

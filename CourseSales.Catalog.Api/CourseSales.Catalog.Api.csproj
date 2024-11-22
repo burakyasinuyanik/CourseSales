@@ -20,4 +20,8 @@
     <ProjectReference Include="..\CourseSales.Shared\CourseSales.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Courses\Dtos\" />
+  </ItemGroup>
+
 </Project>

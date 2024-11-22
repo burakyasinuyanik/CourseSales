@@ -13,7 +13,8 @@ namespace CourseSales.Catalog.Api.Features.Categories
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
 
-            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
+            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>()
+            .WithName("Create Category");
 
             return group;
         }

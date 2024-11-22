@@ -18,3 +18,14 @@ Accept: application/json
 
 Delete {{baseAdress}}/api/categories/08dd08ef-e3ac-9a3b-4e49-6ce70ac70000
 Accept: application/json
+###
+post {{baseAdress}}/api/courses
+Accept: application/json
+Content-Type:application/json
+{
+  "name": "string",
+  "description": "string",
+  "price": 0,
+  "imageUrl": "string",
+  "categoryId": {{@CategoryId}}
+}

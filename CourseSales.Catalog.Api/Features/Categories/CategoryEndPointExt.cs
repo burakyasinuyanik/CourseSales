@@ -9,6 +9,7 @@ namespace CourseSales.Catalog.Api.Features.Categories
         public static void AddCategoryGroupEndPointExt(this WebApplication app)
         {
             app.MapGroup("api/categories")
+                .WithTags("Category")
                 .CreateCategoryGroupItemEndPoint()
                 .GetAllCategoryGroupItemEndPoint()
                 .GetByIdCategoryGroupItemEndPoint()

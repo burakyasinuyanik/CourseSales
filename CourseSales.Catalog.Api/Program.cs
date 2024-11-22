@@ -1,5 +1,6 @@
 using CourseSales.Catalog.Api;
 using CourseSales.Catalog.Api.Features.Categories;
+using CourseSales.Catalog.Api.Features.Courses;
 using CourseSales.Catalog.Api.Options;
 using CourseSales.Catalog.Api.Repositories;
 using CourseSales.Shared.Extensions;
@@ -18,6 +19,7 @@ builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 var app = builder.Build();
 
 app.AddCategoryGroupEndPointExt();
+app.AddCourseGroupEndPointExt();
 
 if (app.Environment.IsDevelopment())
 {

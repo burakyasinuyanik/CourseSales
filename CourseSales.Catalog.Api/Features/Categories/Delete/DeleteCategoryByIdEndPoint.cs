@@ -29,7 +29,8 @@ namespace CourseSales.Catalog.Api.Features.Categories.Delete
             {
                 var result = await mediator.Send(new DeleteCategoryByIdQuery(id));
                 return result.ToGenericResult();
-            });
+            })
+            .WithName("Delete Category"); ;
             return group;
         }
     }
