@@ -1,5 +1,4 @@
-﻿using CourseSales.Catalog.Api.Features.Categories.Dtos;
-using CourseSales.Catalog.Api.Features.Courses.Dtos;
+﻿using CourseSales.Catalog.Api.Features.Courses.Dtos;
 
 namespace CourseSales.Catalog.Api.Features.Courses.GetById
 {
@@ -13,8 +12,8 @@ namespace CourseSales.Catalog.Api.Features.Courses.GetById
            
             if (course is null)
                 return ServiceResult<CourseDto>.Error("Kurs bulunamadı", $"{request.Id}'li kurs bulunamadı", HttpStatusCode.NotFound);
-            var category = await context.Categories.FindAsync(course.CategoryId);
-            course.Category = category;
+            var category = await context.Categories.FindAsync(course.CategoryId,cancellationToken);
+            course.Category = category!;
             
             var courseAsDto = mapper.Map<CourseDto>(course);
 
