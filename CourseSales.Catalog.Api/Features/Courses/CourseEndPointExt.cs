@@ -1,5 +1,6 @@
 ﻿using CourseSales.Catalog.Api.Features.Courses.Create;
 using CourseSales.Catalog.Api.Features.Courses.GetAll;
+using CourseSales.Catalog.Api.Features.Courses.GetById;
 
 namespace CourseSales.Catalog.Api.Features.Courses
 {
@@ -10,7 +11,8 @@ namespace CourseSales.Catalog.Api.Features.Courses
             app.MapGroup("api/courses")
                 .WithTags("Courses")
                 .CreateCourseGroupItemEndPoint()
-                .GetAllCourseGroupItemEndPoint();
+                .GetAllCourseGroupItemEndPoint()
+                .GetCourseByIdItemEndPoint();
         }
     }
 }
