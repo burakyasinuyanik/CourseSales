@@ -1,6 +1,7 @@
 ﻿using CourseSales.Catalog.Api.Features.Courses.Create;
 using CourseSales.Catalog.Api.Features.Courses.Delete;
 using CourseSales.Catalog.Api.Features.Courses.GetAll;
+using CourseSales.Catalog.Api.Features.Courses.GetAllByUserId;
 using CourseSales.Catalog.Api.Features.Courses.GetById;
 using CourseSales.Catalog.Api.Features.Courses.Update;
 
@@ -16,7 +17,8 @@ namespace CourseSales.Catalog.Api.Features.Courses
                 .GetAllCourseGroupItemEndPoint()
                 .GetCourseByIdItemEndPoint()
                 .UpdateCourseCommandItemEndPoint()
-                .DeleteCourseByIdItemEndPoint();
+                .DeleteCourseByIdItemEndPoint()
+                .GetCourseByUserIdItemEndPoint();
         }
     }
 }

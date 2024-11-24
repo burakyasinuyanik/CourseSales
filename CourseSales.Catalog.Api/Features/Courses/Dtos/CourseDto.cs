@@ -8,6 +8,7 @@ namespace CourseSales.Catalog.Api.Features.Courses.Dtos
         string Description,
         decimal Price,
         string ImageUrl,
+        Guid UserId,
         CategoryDto Category,
         FeatureDto Feature);
 
