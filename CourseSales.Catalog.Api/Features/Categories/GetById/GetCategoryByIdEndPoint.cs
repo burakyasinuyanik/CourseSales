@@ -30,7 +30,8 @@ namespace CourseSales.Catalog.Api.Features.Categories.GetById
 
                 return result.ToGenericResult();
             })
-            .WithName("GetById Category"); ;
+            .WithName("GetById Category")
+            .MapToApiVersion(1, 0);
             return group;
         }
     }

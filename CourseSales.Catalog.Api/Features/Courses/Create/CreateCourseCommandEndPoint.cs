@@ -17,7 +17,8 @@ namespace CourseSales.Catalog.Api.Features.Courses.Create
             .Produces<Guid>(StatusCodes.Status201Created)
             .Produces(StatusCodes.Status404NotFound)
             .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
-            .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError);
+            .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
+            .MapToApiVersion(1, 0);
             
 
             return group;

@@ -31,7 +31,8 @@ namespace CourseSales.Catalog.Api.Features.Courses.GetById
                 var result = await mediator.Send(new GetCourseByIdQuery(id));
 
                 return result.ToGenericResult();
-            });
+            })
+            .MapToApiVersion(1, 0);
 
             return group;
         }

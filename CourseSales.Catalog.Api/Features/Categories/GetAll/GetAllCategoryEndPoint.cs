@@ -23,7 +23,8 @@ namespace CourseSales.Catalog.Api.Features.Categories.GetAll
                 var result = await mediator.Send(new GetAllCategoryQuery());
                 return result.ToGenericResult();
             })
-            .WithName("GetAll Category"); ;
+            .WithName("GetAll Category")
+            .MapToApiVersion(1, 0); 
 
             return group;
         }

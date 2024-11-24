@@ -17,8 +17,9 @@ namespace CourseSales.Catalog.Api.Features.Courses.Update
     {
         public async Task<ServiceResult> Handle(UpdateCourseCommand request, CancellationToken cancellationToken)
         {
-            var hasCourse = await context.Courses.AsNoTracking().FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
-            if (hasCourse is null)
+            //update kısımında firstordefault hata verdiği zaman asnotracking kullanabilir.
+            var hasCourse = await context.Courses.AnyAsync(c => c.Id == request.Id, cancellationToken);
+            if (!hasCourse)
                 return ServiceResult.ErrorNotFound();
 
             var updateCourse = mapper.Map<Course>(request);
@@ -39,7 +40,8 @@ namespace CourseSales.Catalog.Api.Features.Courses.Update
             {
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
-            }).AddEndpointFilter<ValidationFilter<UpdateCourseCommand>>();
+            }).AddEndpointFilter<ValidationFilter<UpdateCourseCommand>>()
+            .MapToApiVersion(1, 0);
 
             return group;
         }

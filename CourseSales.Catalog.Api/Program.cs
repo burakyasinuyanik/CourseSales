@@ -13,11 +13,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddOptionsExt();
 builder.Services.AddDataBaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
+builder.Services.AddApiVersioning();
+
 
 var app = builder.Build();
 
-app.AddCategoryGroupEndPointExt();
-app.AddCourseGroupEndPointExt();
+app.AddCategoryGroupEndPointExt(app.AddVersionSetExt());
+app.AddCourseGroupEndPointExt(app.AddVersionSetExt());
 app.AddSeedDataExt().ContinueWith(x =>
 {
     if (x.IsFaulted)

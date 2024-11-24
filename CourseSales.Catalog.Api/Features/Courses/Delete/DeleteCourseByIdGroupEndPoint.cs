@@ -27,7 +27,8 @@
             {
                 var result = await mediator.Send(new DeleteCourseByIdCommand(id));
                 return result.ToGenericResult();
-            });
+            })
+            .MapToApiVersion(1, 0);
             return group;
         }
     }

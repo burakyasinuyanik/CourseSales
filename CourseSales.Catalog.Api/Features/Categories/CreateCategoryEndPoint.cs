@@ -7,14 +7,16 @@ namespace CourseSales.Catalog.Api.Features.Categories
     {
         public static RouteGroupBuilder CreateCategoryGroupItemEndPoint(this RouteGroupBuilder group)
         {
-            
-            group.MapPost("/", async (CreateCategoryCommand command, IMediator mediator) =>
-            {
-                var result = await mediator.Send(command);
-                return result.ToGenericResult();
 
-            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>()
-            .WithName("Create Category");
+            group.MapPost("/", async (CreateCategoryCommand command, IMediator mediator) =>
+                {
+                    var result = await mediator.Send(command);
+                    return result.ToGenericResult();
+
+                }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>()
+                .WithName("Create Category")
+                .MapToApiVersion(1,0);
+            
 
             return group;
         }

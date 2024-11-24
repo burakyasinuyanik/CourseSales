@@ -28,7 +28,8 @@ namespace CourseSales.Catalog.Api.Features.Courses.GetAll
             {
                 var result = await mediator.Send(new GetAllCourseQuery());
                 return result.ToGenericResult();
-            });
+            })
+            .MapToApiVersion(1, 0);
 
             return group;
         }

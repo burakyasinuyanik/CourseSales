@@ -1,4 +1,5 @@
-﻿using CourseSales.Catalog.Api.Features.Courses.Create;
+﻿using Asp.Versioning.Builder;
+using CourseSales.Catalog.Api.Features.Courses.Create;
 using CourseSales.Catalog.Api.Features.Courses.Delete;
 using CourseSales.Catalog.Api.Features.Courses.GetAll;
 using CourseSales.Catalog.Api.Features.Courses.GetAllByUserId;
@@ -9,16 +10,17 @@ namespace CourseSales.Catalog.Api.Features.Courses
 {
     public static class CourseEndPointExt
     {
-        public static void AddCourseGroupEndPointExt(this WebApplication app)
+        public static void AddCourseGroupEndPointExt(this WebApplication app,ApiVersionSet apiVersionSet)
         {
-            app.MapGroup("api/courses")
+            app.MapGroup("api/v{version:apiVersion}/courses")
                 .WithTags("Courses")
                 .CreateCourseGroupItemEndPoint()
                 .GetAllCourseGroupItemEndPoint()
                 .GetCourseByIdItemEndPoint()
                 .UpdateCourseCommandItemEndPoint()
                 .DeleteCourseByIdItemEndPoint()
-                .GetCourseByUserIdItemEndPoint();
+                .GetCourseByUserIdItemEndPoint()
+                .WithApiVersionSet(apiVersionSet);
         }
     }
 }

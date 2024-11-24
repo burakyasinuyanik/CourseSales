@@ -1,10 +1,10 @@
 @baseAdress = http://localhost:5280
 @CategoryId = 08dd01b9-9ac9-b213-4e49-6ce70ac70000
-GET {{baseAdress}}/api/categories
+GET {{baseAdress}}/api/v1/categories
 Accept: application/json
 
 ###
-post {{baseAdress}}/api/categories
+post {{baseAdress}}/api/v1/categories
 Accept: application/json
 Content-Type:application/json
 {
@@ -12,14 +12,14 @@ Content-Type:application/json
 }
 ###
 
-Get {{baseAdress}}/api/categories/{{CategoryId}}
+Get {{baseAdress}}/api/v1/categories/{{CategoryId}}
 Accept: application/json
 ###
 
-Delete {{baseAdress}}/api/categories/08dd08ef-e3ac-9a3b-4e49-6ce70ac70000
+Delete {{baseAdress}}/api/v1/categories/08dd08ef-e3ac-9a3b-4e49-6ce70ac70000
 Accept: application/json
 ###
-post {{baseAdress}}/api/courses
+post {{baseAdress}}/api/v1/courses
 Accept: application/json
 Content-Type:application/json
 {
@@ -31,5 +31,5 @@ Content-Type:application/json
 }
 ###
 
-Delete {{baseAdress}}/api/courses/08dd08ef-e3ac-9a3b-4e49-6ce70ac70000
+Delete {{baseAdress}}/api/v1/courses/08dd08ef-e3ac-9a3b-4e49-6ce70ac70000
 Accept: application/json
