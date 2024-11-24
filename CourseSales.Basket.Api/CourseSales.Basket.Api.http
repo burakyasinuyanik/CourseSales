@@ -1,6 +1,12 @@
-@CourseSales.Basket.Api_HostAddress = http://localhost:5291
+@baseAdress = http://localhost:5291
 
-GET {{CourseSales.Basket.Api_HostAddress}}/weatherforecast/
+post {{baseAdress}}/api/v1/baskets/item
 Accept: application/json
-
+content-type: application/json
+{
+  "courseId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "courseName": "xxx1",
+  "coursePrice": 23,
+  "imageUrl": "/image"
+}
 ###

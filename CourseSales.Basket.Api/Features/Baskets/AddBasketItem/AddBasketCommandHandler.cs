@@ -2,12 +2,13 @@
 using CourseSales.Basket.Api.Const;
 using CourseSales.Basket.Api.Features.Baskets.Dtos;
 using CourseSales.Shared;
+using CourseSales.Shared.Services;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 
 namespace CourseSales.Basket.Api.Features.Baskets.AddBasketItem
 {
-    public class AddBasketCommandHandler(IDistributedCache distributedCache) : IRequestHandler<AddBasketItemCommand, ServiceResult>
+    public class AddBasketCommandHandler(IDistributedCache distributedCache,IIdentityService identityService ) : IRequestHandler<AddBasketItemCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(AddBasketItemCommand request, CancellationToken cancellationToken)
         {
@@ -15,7 +16,7 @@ namespace CourseSales.Basket.Api.Features.Baskets.AddBasketItem
 
 
             //TODO: change user ıd
-            var userId = Guid.NewGuid();
+            var userId = identityService.GetUserId;
             //basket:userId
             var cacheKey = string.Format(BasketConst.BasketCacheKey, userId);
             var basketAsString = await distributedCache.GetStringAsync(cacheKey, cancellationToken);
