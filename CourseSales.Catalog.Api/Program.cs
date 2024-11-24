@@ -13,7 +13,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddOptionsExt();
 builder.Services.AddDataBaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
-builder.Services.AddApiVersioning();
+
+builder.Services.AddVersioningExt();
 
 
 var app = builder.Build();

@@ -23,10 +23,10 @@ namespace CourseSales.Shared.Extensions
 
 
 
-            }).AddApiExplorer(opt =>
+            }).AddApiExplorer(options =>
             {
-                opt.GroupNameFormat = "'v'V";
-                opt.SubstituteApiVersionInUrl=true;
+                options.GroupNameFormat = "'v'V";
+                options.SubstituteApiVersionInUrl=true;
             });
 
             return services;
@@ -38,6 +38,8 @@ namespace CourseSales.Shared.Extensions
 
             var apiVersionSet = app.NewApiVersionSet()
                 .HasApiVersion(new ApiVersion(1, 0))
+                .HasApiVersion(new ApiVersion(1, 2))
+
                 .HasApiVersion(new ApiVersion(2, 0))
                 .ReportApiVersions()
                 .Build();
