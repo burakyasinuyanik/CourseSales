@@ -1,5 +1,5 @@
 @baseAdress = http://localhost:5280
-@CategoryId = 08dd01a9-2a70-e38c-4e49-6ce70ac70000
+@CategoryId = 08dd01b9-9ac9-b213-4e49-6ce70ac70000
 GET {{baseAdress}}/api/categories
 Accept: application/json
 
@@ -25,7 +25,11 @@ Content-Type:application/json
 {
   "name": "string",
   "description": "string",
-  "price": 0,
+  "price": 2,
   "imageUrl": "string",
-  "categoryId": {{@CategoryId}}
+  "categoryId": "{{CategoryId}}"
 }
+###
+
+Delete {{baseAdress}}/api/courses/08dd08ef-e3ac-9a3b-4e49-6ce70ac70000
+Accept: application/json

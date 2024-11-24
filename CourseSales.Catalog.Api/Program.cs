@@ -2,8 +2,6 @@ using CourseSales.Catalog.Api;
 using CourseSales.Catalog.Api.Features.Categories;
 using CourseSales.Catalog.Api.Features.Courses;
 using CourseSales.Catalog.Api.Options;
-using CourseSales.Catalog.Api.Repositories;
-using CourseSales.Shared.Extensions;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +18,17 @@ var app = builder.Build();
 
 app.AddCategoryGroupEndPointExt();
 app.AddCourseGroupEndPointExt();
+app.AddSeedDataExt().ContinueWith(x =>
+{
+    if (x.IsFaulted)
+    {
+        Console.WriteLine(x.Exception.Message);
+    }
+    else
+    {
+        Console.WriteLine("seed data yüklendi.");
+    }
+});
 
 if (app.Environment.IsDevelopment())
 {
