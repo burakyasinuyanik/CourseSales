@@ -231,12 +231,12 @@ namespace CourseSales.Shared
 
             return new ServiceResult<T>()
             {
-                Status = HttpStatusCode.BadRequest,
+                Status = status,
                 Fail = new ProblemDetails()
                 {
                     Title = title,
 
-                    Status = HttpStatusCode.BadRequest.GetHashCode()
+                    Status = status.GetHashCode()
                 }
             };
 
