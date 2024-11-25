@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning.Builder;
 using CourseSales.Basket.Api.Features.Baskets.AddBasketItem;
+using CourseSales.Basket.Api.Features.Baskets.DeleteBasketItem;
 
 namespace CourseSales.Basket.Api
 {
@@ -10,7 +11,8 @@ namespace CourseSales.Basket.Api
             app.MapGroup("api/v{version:apiVersion}/baskets")
                 .WithTags("Baskets")
                 .WithApiVersionSet(apiVersionSet)
-                .AddBasketGroupItemEndPoint();
+                .AddBasketGroupItemEndPoint()
+                .DeleteBasketItemGroupEndPoint();
 
         }
     }

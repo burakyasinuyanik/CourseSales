@@ -21,32 +21,32 @@ namespace CourseSales.Basket.Api.Features.Baskets.AddBasketItem
             var cacheKey = string.Format(BasketConst.BasketCacheKey, userId);
             var basketAsString = await distributedCache.GetStringAsync(cacheKey, cancellationToken);
 
-            BasketDto? currendBasket;
+            BasketDto? currentBasket;
             var newBasketItem = new BasketItemDto(request.CourseId, request.CourseName, request.CoursePrice, request.ImageUrl, null);
 
             if (string.IsNullOrEmpty(basketAsString))
             {
-                currendBasket = new BasketDto(userId, [newBasketItem]);
-                await CreateCacheAsyn(currendBasket, cacheKey, cancellationToken);
+                currentBasket = new BasketDto(userId, [newBasketItem]);
+                await CreateCacheAsyn(currentBasket, cacheKey, cancellationToken);
 
 
                 return ServiceResult.SuccessAsNoContent();
             }
 
-            currendBasket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
-            var existingBasketItem = currendBasket!.BasketItems.FirstOrDefault(c => c.Id == request.CourseId);
+            currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
+            var existingBasketItem = currentBasket!.BasketItems.FirstOrDefault(c => c.Id == request.CourseId);
             if (existingBasketItem is not null)
             {
-                currendBasket.BasketItems.Remove(existingBasketItem);
+                currentBasket.BasketItems.Remove(existingBasketItem);
 
             }
 
-            currendBasket.BasketItems.Add(newBasketItem);
+            currentBasket.BasketItems.Add(newBasketItem);
 
 
 
 
-            await CreateCacheAsyn(currendBasket, cacheKey, cancellationToken);
+            await CreateCacheAsyn(currentBasket, cacheKey, cancellationToken);
 
 
 
