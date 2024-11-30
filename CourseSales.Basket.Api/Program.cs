@@ -1,5 +1,6 @@
 using Asp.Versioning.Builder;
 using CourseSales.Basket.Api;
+using CourseSales.Basket.Api.Features.Baskets;
 using CourseSales.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);

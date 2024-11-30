@@ -1,7 +1,8 @@
-﻿using CourseSales.Shared.Extensions;
+﻿
+using CourseSales.Shared.Extensions;
 using MediatR;
 
-namespace CourseSales.Basket.Api.Features.GetBasket
+namespace CourseSales.Basket.Api.Features.Baskets.GetBasket
 {
     public static class GetBasketEndPoint
     {
@@ -13,7 +14,7 @@ namespace CourseSales.Basket.Api.Features.GetBasket
                 var result = await mediator.Send(new GetBasketItemQuery());
                 return result.ToGenericResult();
             })
-            .MapToApiVersion(1,0);
+            .MapToApiVersion(1, 0);
 
             return group;
         }

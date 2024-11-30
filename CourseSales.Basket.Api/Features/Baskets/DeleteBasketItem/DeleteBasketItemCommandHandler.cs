@@ -20,7 +20,7 @@ namespace CourseSales.Basket.Api.Features.Baskets.DeleteBasketItem
             if (string.IsNullOrEmpty(hasBasket))
                 return ServiceResult.Error("Basket Bulunamadı", "Baskette ürün yok", HttpStatusCode.NotFound);
 
-            var currentBasket = JsonSerializer.Deserialize<BasketDto>(hasBasket);
+            var currentBasket = JsonSerializer.Deserialize<Data.Basket>(hasBasket);
 
           var basketItemToDelete=  currentBasket!.BasketItems.FirstOrDefault(i => i.Id == request.CourseId);
             if(basketItemToDelete is null)
