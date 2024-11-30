@@ -1,22 +1,17 @@
-﻿using System.Net;
-using System.Text.Json;
-using CourseSales.Basket.Api.Const;
-using CourseSales.Basket.Api.Features.Baskets.Dtos;
-using CourseSales.Shared;
-using CourseSales.Shared.Services;
+﻿using CourseSales.Shared;
 using MediatR;
-using Microsoft.Extensions.Caching.Distributed;
+using System.Net;
+using System.Text.Json;
 
 namespace CourseSales.Basket.Api.Features.Baskets.DeleteBasketItem
 {
-    public class DeleteBasketItemCommandHandler(IDistributedCache distributedCache, IIdentityService identity)
+    public class DeleteBasketItemCommandHandler(BasketService basketService)
         : IRequestHandler<DeleteBasketItemCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(DeleteBasketItemCommand request, CancellationToken cancellationToken)
         {
-            Guid UserId = identity.GetUserId;
-            var hasKey = string.Format(BasketConst.BasketCacheKey, UserId);
-            var hasBasket = await distributedCache.GetStringAsync(hasKey, cancellationToken);
+          
+            var hasBasket = await basketService.GetBasketFromCache(cancellationToken);
             if (string.IsNullOrEmpty(hasBasket))
                 return ServiceResult.Error("Basket Bulunamadı", "Baskette ürün yok", HttpStatusCode.NotFound);
 
@@ -28,9 +23,9 @@ namespace CourseSales.Basket.Api.Features.Baskets.DeleteBasketItem
 
             currentBasket.BasketItems.Remove(basketItemToDelete);
 
-            var currentBasketAsString = JsonSerializer.Serialize(currentBasket);
+       
 
-            await distributedCache.SetStringAsync(hasKey,currentBasketAsString, cancellationToken);
+            await basketService.CreateBasketCacheAsync(currentBasket, cancellationToken);
 
             return ServiceResult.SuccessAsNoContent();
         }

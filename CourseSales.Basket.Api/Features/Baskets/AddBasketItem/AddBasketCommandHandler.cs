@@ -1,15 +1,12 @@
-﻿using System.Text.Json;
-using CourseSales.Basket.Api.Const;
-using CourseSales.Basket.Api.Features.Baskets.Dtos;
+﻿using CourseSales.Basket.Api.Data;
 using CourseSales.Shared;
 using CourseSales.Shared.Services;
 using MediatR;
-using Microsoft.Extensions.Caching.Distributed;
-using CourseSales.Basket.Api.Data;
+using System.Text.Json;
 
 namespace CourseSales.Basket.Api.Features.Baskets.AddBasketItem
 {
-    public class AddBasketCommandHandler(IDistributedCache distributedCache,IIdentityService identityService ) : IRequestHandler<AddBasketItemCommand, ServiceResult>
+    public class AddBasketCommandHandler(IIdentityService identityService,BasketService basketService ) : IRequestHandler<AddBasketItemCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(AddBasketItemCommand request, CancellationToken cancellationToken)
         {
@@ -17,18 +14,16 @@ namespace CourseSales.Basket.Api.Features.Baskets.AddBasketItem
 
 
             //TODO: change user ıd
-            var userId = identityService.GetUserId;
-            //basket:userId
-            var cacheKey = string.Format(BasketConst.BasketCacheKey, userId);
-            var basketAsString = await distributedCache.GetStringAsync(cacheKey, cancellationToken);
+          
+            var basketAsString = await basketService.GetBasketFromCache(cancellationToken);
 
             Data.Basket? currentBasket;
             var newBasketItem = new BasketItem(request.CourseId, request.CourseName, request.CoursePrice, request.ImageUrl, null);
 
             if (string.IsNullOrEmpty(basketAsString))
             {
-                currentBasket = new Data.Basket(userId, [newBasketItem]);
-                await CreateCacheAsyn(currentBasket, cacheKey, cancellationToken);
+                currentBasket = new Data.Basket(identityService.GetUserId, [newBasketItem]);
+                await basketService.CreateBasketCacheAsync(currentBasket, cancellationToken);
 
 
                 return ServiceResult.SuccessAsNoContent();
@@ -47,7 +42,8 @@ namespace CourseSales.Basket.Api.Features.Baskets.AddBasketItem
 
             currentBasket.ApplyAvaibleDiscount();
 
-            await CreateCacheAsyn(currentBasket, cacheKey, cancellationToken);
+            await basketService.CreateBasketCacheAsync(currentBasket, cancellationToken);
+
 
 
 
@@ -56,11 +52,6 @@ namespace CourseSales.Basket.Api.Features.Baskets.AddBasketItem
 
         }
 
-        private async Task CreateCacheAsyn(Data.Basket basket, string cacheKey, CancellationToken cancellationToken)
-        {
-            var basketAsString = JsonSerializer.Serialize(basket);
-            await distributedCache.SetStringAsync(cacheKey, basketAsString, cancellationToken);
-
-        }
+        
     }
 }

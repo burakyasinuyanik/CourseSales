@@ -1,26 +1,21 @@
-﻿using CourseSales.Basket.Api.Const;
+﻿using AutoMapper;
 using CourseSales.Basket.Api.Features.Baskets.Dtos;
 using CourseSales.Shared;
-using CourseSales.Shared.Services;
 using MediatR;
-using Microsoft.Extensions.Caching.Distributed;
 using System.Net;
 using System.Text.Json;
-using AutoMapper;
 
 namespace CourseSales.Basket.Api.Features.Baskets.GetBasket
 {
-    public class GetBasketItemQueryHandler(IDistributedCache distributedCache, IIdentityService identityService,IMapper mapper) : IRequestHandler<GetBasketItemQuery, ServiceResult<BasketDto>>
+    public class GetBasketItemQueryHandler(IMapper mapper,BasketService basketService) : IRequestHandler<GetBasketItemQuery, ServiceResult<BasketDto>>
     {
         public async Task<ServiceResult<BasketDto>> Handle(GetBasketItemQuery request, CancellationToken cancellationToken)
         {
-            Guid userId = identityService.GetUserId;
-            var cacheKey = string.Format(BasketConst.BasketCacheKey, userId);
-            var hasKey = await distributedCache.GetStringAsync(cacheKey, cancellationToken);
-            if (string.IsNullOrEmpty(hasKey))
+            var basketAsJson = await basketService.GetBasketFromCache(cancellationToken);
+            if (string.IsNullOrEmpty(basketAsJson))
                 return ServiceResult<BasketDto>.Error("Sepet Bulunamadı", "Sepet Bulunamadı", HttpStatusCode.NotFound);
 
-            var currentBasket = JsonSerializer.Deserialize<Data.Basket>(hasKey);
+            var currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson);
 
             if (currentBasket!.BasketItems.Count == 0)
                 return ServiceResult<BasketDto>.Error("Sepet Boş", HttpStatusCode.NotFound);

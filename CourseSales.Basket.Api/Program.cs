@@ -1,4 +1,3 @@
-using Asp.Versioning.Builder;
 using CourseSales.Basket.Api;
 using CourseSales.Basket.Api.Features.Baskets;
 using CourseSales.Shared.Extensions;
@@ -11,7 +10,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCommonServiceExt(typeof(BasketAssembly));
 builder.Services.AddVersioningExt();
-
+builder.Services.AddScoped<BasketService>();
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {

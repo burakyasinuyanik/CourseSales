@@ -1,8 +1,6 @@
 ﻿using CourseSales.Shared.Extensions;
 using CourseSales.Shared.Filters;
-using FluentValidation;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CourseSales.Basket.Api.Features.Baskets.DiscountBasket.ApplyDiscount
 {
@@ -13,10 +11,10 @@ namespace CourseSales.Basket.Api.Features.Baskets.DiscountBasket.ApplyDiscount
         {
             group.MapPut("/apply-discount-coupon", async (ApplyDiscountCouponCommand command, IMediator mediator) =>
                 {
-                    var Result =
+                    var result =
                         await mediator.Send(new ApplyDiscountCouponCommand(command.Cuopon, command.DiscountRate));
 
-                    return Result.ToGenericResult();
+                    return result.ToGenericResult();
 
                 })
                 .MapToApiVersion(1, 0)
