@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning.Builder;
+using CourseSales.Catalog.Api.Features.Categories.Create;
 using CourseSales.Catalog.Api.Features.Categories.Delete;
 using CourseSales.Catalog.Api.Features.Categories.GetAll;
 using CourseSales.Catalog.Api.Features.Categories.GetById;

@@ -1,7 +1,6 @@
-﻿using CourseSales.Catalog.Api.Features.Categories.Create;
-using CourseSales.Shared.Filters;
+﻿using CourseSales.Shared.Filters;
 
-namespace CourseSales.Catalog.Api.Features.Categories
+namespace CourseSales.Catalog.Api.Features.Categories.Create
 {
     public static class CreateCategoryEndPoint
     {
@@ -15,8 +14,8 @@ namespace CourseSales.Catalog.Api.Features.Categories
 
                 }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>()
                 .WithName("Create Category")
-                .MapToApiVersion(1,0);
-            
+                .MapToApiVersion(1, 0);
+
 
             return group;
         }
