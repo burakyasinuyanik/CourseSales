@@ -7,7 +7,7 @@ namespace CourseSales.Discount.Api.Repositories
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public DbSet<Features.Discounts.Discount> Discountss { get; set; }
+        public DbSet<Features.Discounts.Discount> Discounts { get; set; }
 
         public static AppDbContext Create(IMongoDatabase mongoDatabase)
         {

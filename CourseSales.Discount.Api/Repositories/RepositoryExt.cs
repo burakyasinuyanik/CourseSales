@@ -12,9 +12,9 @@ namespace CourseSales.Discount.Api.Repositories
                 var options = sp.GetRequiredService<MongoOption>();
                 return new MongoClient(options.ConnectionString);
             });
-            services.AddScoped(sp =>
+            services.AddScoped<AppDbContext>(sp =>
             {
-                var mongoClient = sp.GetRequiredService<MongoClient>();
+                var mongoClient = sp.GetRequiredService<IMongoClient>();
                 var options = sp.GetRequiredService<MongoOption>();
 
                 return AppDbContext.Create(mongoClient.GetDatabase(options.DataBaseName));
