@@ -1,0 +1,6 @@
+@CourseSales.Discount.Api_HostAddress = http://localhost:5262
+
+GET {{CourseSales.Discount.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
