@@ -1,4 +1,5 @@
 using CourseSales.Discount.Api;
+using CourseSales.Discount.Api.Features.Discounts;
 using CourseSales.Discount.Api.Options;
 using CourseSales.Discount.Api.Repositories;
 using CourseSales.Shared.Extensions;
@@ -15,6 +16,8 @@ builder.Services.AddDataBaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(DiscountAssembly));
 
 var app = builder.Build();
+
+app.AddDiscountGroupEndPointExt(app.AddVersionSetExt());
 
 app.AddSeedDataExt().ContinueWith(x =>
 {
