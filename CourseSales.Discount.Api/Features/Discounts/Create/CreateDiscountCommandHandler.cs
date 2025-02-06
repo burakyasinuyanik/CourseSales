@@ -14,7 +14,8 @@ namespace CourseSales.Discount.Api.Features.Discounts.Create
     {
         public async Task<ServiceResult> Handle(CreateDiscountCommand request, CancellationToken cancellationToken)
         {
-            var discountExits =  context.Discounts.Any(x=>x.Code==request.Code);
+            var discountExits =  context.Discounts.Any(x => x.Code == request.Code);
+           
             if (discountExits)
                 return ServiceResult.Error("Kod Mevcut", HttpStatusCode.BadRequest);
 

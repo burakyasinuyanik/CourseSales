@@ -1,13 +1,13 @@
 @baseUrl= http://localhost:5262
 
-post {{baseUrl}}/api/v1/discount
+post {{baseUrl}}/api/v1/discounts
 Accept: application/json
 Content-Type:application/json
 {
-  "code": "123string123",
-  "rate": 01,
+  "code": "123string1",
+  "rate": 0.5,
   "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "expired": "2025-02-06T19:36:00.619Z"
+  "expired": "2025-04-06T19:36:00.619Z"
 }
 
 

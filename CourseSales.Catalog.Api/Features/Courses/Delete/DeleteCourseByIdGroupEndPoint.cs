@@ -28,6 +28,7 @@
                 var result = await mediator.Send(new DeleteCourseByIdCommand(id));
                 return result.ToGenericResult();
             })
+                .WithName("DeleteDiscount")
             .MapToApiVersion(1, 0);
             return group;
         }

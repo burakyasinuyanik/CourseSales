@@ -11,6 +11,7 @@ namespace CourseSales.Discount.Api.Repositories
 
         public static AppDbContext Create(IMongoDatabase mongoDatabase)
         {
+           
             var optionBuilder = new DbContextOptionsBuilder<AppDbContext>().UseMongoDB(mongoDatabase.Client, mongoDatabase.DatabaseNamespace.DatabaseName);
             return  new AppDbContext(optionBuilder.Options);
         }
