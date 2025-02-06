@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning.Builder;
 using CourseSales.Discount.Api.Features.Discounts.Create;
 using CourseSales.Discount.Api.Features.Discounts.Delete;
+using CourseSales.Discount.Api.Features.Discounts.GetById;
 
 namespace CourseSales.Discount.Api.Features.Discounts
 {
@@ -12,6 +13,7 @@ namespace CourseSales.Discount.Api.Features.Discounts
             app.MapGroup("api/v{version:ApiVersion}/discounts")
                  .CreateDiscountGroupItemEndPoint()
                  .DeleteDiscountByIdGroupItemEndPoint()
+                 .GetDiscountByIdGroupItemEndPoint()
                  .WithTags("Discount")
                  .WithApiVersionSet(versionSet);
                 
