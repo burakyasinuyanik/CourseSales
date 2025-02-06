@@ -1,6 +1,14 @@
-@CourseSales.Discount.Api_HostAddress = http://localhost:5262
+@baseUrl= http://localhost:5262
 
-GET {{CourseSales.Discount.Api_HostAddress}}/weatherforecast/
+post {{baseUrl}}/api/v1/discount
 Accept: application/json
+Content-Type:application/json
+{
+  "code": "123string123",
+  "rate": 01,
+  "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "expired": "2025-02-06T19:36:00.619Z"
+}
+
 
 ###
