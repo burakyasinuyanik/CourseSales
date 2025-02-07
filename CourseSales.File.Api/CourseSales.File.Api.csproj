@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Files\" />
-    <Folder Include="wwwroot\picture\" />
+    <Folder Include="Features\Files\Delete\" />
+    <Folder Include="wwwroot\Files\" />
   </ItemGroup>
 
 </Project>

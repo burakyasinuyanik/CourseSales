@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddVersioningExt();
 builder.Services.AddCommonServiceExt(typeof(FileAssembly));
-builder.Services.AddSingleton<IFileProvider>(Path.Combine(Directory.GetCurrentDirectory()))
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
 var app = builder.Build();
 
