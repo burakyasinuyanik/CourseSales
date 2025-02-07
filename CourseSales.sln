@@ -23,6 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "discount", "discount", "{E3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.Discount.Api", "CourseSales.Discount.Api\CourseSales.Discount.Api.csproj", "{8ACCA6A2-1380-46AE-8613-EAC27E898288}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "file", "file", "{E9ADE4C7-71E1-4473-BE28-0FF143512B30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.File.Api", "CourseSales.File.Api\CourseSales.File.Api.csproj", "{6FE031BB-41A1-400D-A510-9A8D5BF9573D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{8ACCA6A2-1380-46AE-8613-EAC27E898288}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ACCA6A2-1380-46AE-8613-EAC27E898288}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8ACCA6A2-1380-46AE-8613-EAC27E898288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FE031BB-41A1-400D-A510-9A8D5BF9573D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FE031BB-41A1-400D-A510-9A8D5BF9573D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FE031BB-41A1-400D-A510-9A8D5BF9573D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FE031BB-41A1-400D-A510-9A8D5BF9573D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +70,8 @@ Global
 		{1A871610-34D5-4177-A30E-05F9D1F74624} = {7A53F26E-A681-4B72-9369-B34AC23DB591}
 		{E3A1064C-38FD-4509-BC2D-B4B60DE30E28} = {6E3A74B0-77F6-4EF4-AE52-B564E605ACD4}
 		{8ACCA6A2-1380-46AE-8613-EAC27E898288} = {E3A1064C-38FD-4509-BC2D-B4B60DE30E28}
+		{E9ADE4C7-71E1-4473-BE28-0FF143512B30} = {6E3A74B0-77F6-4EF4-AE52-B564E605ACD4}
+		{6FE031BB-41A1-400D-A510-9A8D5BF9573D} = {E9ADE4C7-71E1-4473-BE28-0FF143512B30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F81598A4-0889-415A-9C04-442E1F01F2D4}
