@@ -10,7 +10,8 @@ namespace CourseSales.File.Api.Features.Files
             app.MapGroup("api/v{version:apiVersion}/files")
                 .UploadFileGroupItenEndPoint()
                 .WithTags("files")
-                .WithApiVersionSet(apiVersionSet);
+                .WithApiVersionSet(apiVersionSet)
+                .DisableAntiforgery();
         }
     }
 }

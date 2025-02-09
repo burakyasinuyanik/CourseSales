@@ -1,4 +1,5 @@
 ﻿using CourseSales.Shared;
+using CourseSales.Shared.Extensions;
 using MediatR;
 using Microsoft.Extensions.FileProviders;
 using System.Net;
@@ -36,10 +37,12 @@ namespace CourseSales.File.Api.Features.Files.Upload
     {
         public static RouteGroupBuilder UploadFileGroupItenEndPoint(this RouteGroupBuilder group)
         {
-            group.MapPost("/", async (UploadFileCommand command, IMediator mediator) =>
+            group.MapPost("/", async (IFormFile file, IMediator mediator) =>
             {
 
-                var result = await mediator.Send(command);
+                var result = await mediator.Send(new UploadFileCommand(file));
+
+                return result.ToGenericResult();
             })
                 .WithName("Upload")
                 .MapToApiVersion(1,0);

@@ -1,4 +1,5 @@
 using CourseSales.File.Api;
+using CourseSales.File.Api.Features.Files;
 using CourseSales.Shared.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.FileProviders;
@@ -22,7 +23,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.AddFileGroupEndPointExt(app.AddVersionSetExt());
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
