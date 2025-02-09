@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning.Builder;
+using CourseSales.File.Api.Features.Files.Delete;
 using CourseSales.File.Api.Features.Files.Upload;
 
 namespace CourseSales.File.Api.Features.Files
@@ -8,7 +9,8 @@ namespace CourseSales.File.Api.Features.Files
         public static void AddFileGroupEndPointExt(this WebApplication app, ApiVersionSet apiVersionSet)
         {
             app.MapGroup("api/v{version:apiVersion}/files")
-                .UploadFileGroupItenEndPoint()
+                .UploadFileGroupItemEndPoint()
+                .DeleteFileCommandGroupItemEndPoint()
                 .WithTags("files")
                 .WithApiVersionSet(apiVersionSet)
                 .DisableAntiforgery();

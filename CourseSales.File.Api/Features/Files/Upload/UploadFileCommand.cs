@@ -35,7 +35,7 @@ namespace CourseSales.File.Api.Features.Files.Upload
 
     public static class UploadFileCommandEndPoint
     {
-        public static RouteGroupBuilder UploadFileGroupItenEndPoint(this RouteGroupBuilder group)
+        public static RouteGroupBuilder UploadFileGroupItemEndPoint(this RouteGroupBuilder group)
         {
             group.MapPost("/", async (IFormFile file, IMediator mediator) =>
             {

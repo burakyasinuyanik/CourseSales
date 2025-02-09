@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Files\Delete\" />
     <Folder Include="wwwroot\Files\" />
   </ItemGroup>
 
