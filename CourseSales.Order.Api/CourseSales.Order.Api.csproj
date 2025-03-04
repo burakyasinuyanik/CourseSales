@@ -13,4 +13,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CourseSales.Order.Application\CourseSales.Order.Application.csproj" />
+    <ProjectReference Include="..\CourseSales.Order.Persistence\CourseSales.Order.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
