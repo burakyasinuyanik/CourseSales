@@ -5,12 +5,14 @@
         public Guid ProductId { get; set; }
         public string ProductName { get; set; } = default!;
         public decimal UnitPrice { get; set; }
+        public Guid OrderId { get; set; }
+        public virtual Order Order { get; set; } = null!;
 
         public void SetItem(Guid productId, string productName, decimal unitPrice)
         {
             if (string.IsNullOrEmpty(ProductName))
             {
-                throw new ArgumentNullException(nameof(productName),"Ürün adı boş olamaz.");
+                throw new ArgumentNullException(nameof(productName), "Ürün adı boş olamaz.");
             }
             if (UnitPrice < 0)
             {
