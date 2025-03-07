@@ -18,7 +18,6 @@ namespace CourseSales.Order.Domain.Entities
         public float? DiscountRate { get; set; }
         public Guid? PaymentId { get; set; }
         public List<OrderItem> OrderItems { get; set; } = new();
-        public virtual List<OrderItem> OrderItemsBy { get; set; } = new();
         public Adress Adress { get; set; } = null!;
         public static string GenerateCode()
         {
