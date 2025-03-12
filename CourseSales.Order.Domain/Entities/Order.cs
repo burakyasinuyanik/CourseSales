@@ -31,7 +31,7 @@ namespace CourseSales.Order.Domain.Entities
 
         }
 
-        public static Order CreateUnPaidOrder(Guid buyerId, float discountRate, int adressId)
+        public static Order CreateUnPaidOrder(Guid buyerId, float? discountRate, int adressId)
         {
             return new Order()
             {
