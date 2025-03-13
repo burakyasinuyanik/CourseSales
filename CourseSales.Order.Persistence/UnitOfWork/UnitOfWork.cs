@@ -9,9 +9,9 @@ namespace CourseSales.Order.Persistence.UnitOfWork
 {
     public class UnitOfWork(AppDbContext context) : IUnitOfWork
     {
-        public void BeginTransactionAsync()
+        public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
         {
-            context.Database.BeginTransaction();
+           await context.Database.BeginTransactionAsync(cancellationToken);
         }
 
         public Task CommitTransactionAsync(CancellationToken cancellationToken=default)
@@ -19,7 +19,7 @@ namespace CourseSales.Order.Persistence.UnitOfWork
             return context.Database.CommitTransactionAsync(cancellationToken);
         }
 
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken=default)
+        public Task<int> CommitAsync(CancellationToken cancellationToken=default)
         {
             return context.SaveChangesAsync(cancellationToken);
 

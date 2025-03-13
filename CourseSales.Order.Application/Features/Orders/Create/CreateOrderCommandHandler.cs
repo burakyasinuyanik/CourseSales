@@ -1,4 +1,5 @@
 ﻿using CourseSales.Order.Application.Contracts.Repositories;
+using CourseSales.Order.Application.Contracts.UnitOfWork;
 using CourseSales.Order.Application.Dto;
 using CourseSales.Order.Domain.Entities;
 using CourseSales.Shared;
@@ -13,15 +14,16 @@ using System.Threading.Tasks;
 
 namespace CourseSales.Order.Application.Features.Orders.Create
 {
-    public class CreateOrderCommandHandler(IGenericRepository<Guid,Order.Domain.Entities.Order> orderRepository,
+    public class CreateOrderCommandHandler(IOrderRepository orderRepository,
         IGenericRepository<int,Adress> addressRepository,
-        IIdentityService identityService) : IRequestHandler<CreateOrderCommand, ServiceResult>
+        IIdentityService identityService,
+        IUnitOfWork unitOfWork) : IRequestHandler<CreateOrderCommand, ServiceResult>
     {
-        public  Task<ServiceResult> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+        public  async Task<ServiceResult> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
             if(!request.Items.Any())
-                return Task.FromResult(ServiceResult.Error("Sipariş içerisinde ürün bulunmamaktadır","Sipariş içerisinden en az bir ürün bulunması gerekmektedir.",HttpStatusCode.BadRequest));
-           //todo: transaction başlatılacak
+                return ServiceResult.Error("Sipariş içerisinde ürün bulunmamaktadır","Sipariş içerisinden en az bir ürün bulunması gerekmektedir.",HttpStatusCode.BadRequest);
+        
             var newAdress = new Adress
             {
                 District = request.Address.District,
@@ -38,13 +40,18 @@ namespace CourseSales.Order.Application.Features.Orders.Create
                 order.AddOrderItem(orderItem.ProductId, orderItem.ProductName, orderItem.UnitPrice);
             }
 
+            order.Adress = newAdress;
+
             orderRepository.Add(order);
+            await unitOfWork.CommitAsync(cancellationToken);
 
             var paymentId = Guid.Empty;
+
             order.SetPaidStatus(paymentId);
             orderRepository.Update(order);
 
-            return Task.FromResult(ServiceResult.SuccessAsNoContent());
+           await unitOfWork.CommitAsync(cancellationToken);
+            return ServiceResult.SuccessAsNoContent();
         }
     }
 }
