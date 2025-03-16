@@ -23,7 +23,7 @@ namespace CourseSales.Order.Domain.Entities
         {
             Random rnd = new Random();
             var orderCode = new StringBuilder("10");
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 8; i++)
             {
                 orderCode.Append(rnd.Next(10));
             }

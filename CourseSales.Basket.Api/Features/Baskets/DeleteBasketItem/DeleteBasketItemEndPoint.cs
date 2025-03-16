@@ -15,7 +15,7 @@ namespace CourseSales.Basket.Api.Features.Baskets.DeleteBasketItem
 
                 return result.ToGenericResult();
             })
-            .AddEndpointFilter<ValidationFilter<DeleteBasketItemCommandValidator>>()
+            .AddEndpointFilter<ValidationFilter<DeleteBasketItemCommand>>()
             .MapToApiVersion(1,0);
 
             return group;

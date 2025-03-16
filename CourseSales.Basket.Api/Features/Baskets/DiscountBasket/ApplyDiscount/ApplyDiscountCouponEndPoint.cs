@@ -18,7 +18,7 @@ namespace CourseSales.Basket.Api.Features.Baskets.DiscountBasket.ApplyDiscount
 
                 })
                 .MapToApiVersion(1, 0)
-                .AddEndpointFilter<ValidationFilter<ApplyDiscountCouponCommandValidator>>();
+                .AddEndpointFilter<ValidationFilter<ApplyDiscountCouponCommand>>();
 
             return group;
         }

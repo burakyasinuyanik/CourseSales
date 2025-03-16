@@ -4,6 +4,7 @@ using CourseSales.Order.Application.Dto;
 using CourseSales.Order.Domain.Entities;
 using CourseSales.Shared;
 using CourseSales.Shared.Services;
+using MassTransit;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace CourseSales.Order.Application.Features.Orders.Create
             }
 
             order.Adress = newAdress;
-
+          
             orderRepository.Add(order);
             await unitOfWork.CommitAsync(cancellationToken);
 

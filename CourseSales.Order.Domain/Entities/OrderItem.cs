@@ -10,7 +10,7 @@
 
         public void SetItem(Guid productId, string productName, decimal unitPrice)
         {
-            if (string.IsNullOrEmpty(ProductName))
+            if (string.IsNullOrEmpty(productName))
             {
                 throw new ArgumentNullException(nameof(productName), "Ürün adı boş olamaz.");
             }
@@ -19,9 +19,9 @@
                 throw new ArgumentOutOfRangeException("Ürün fiyatı 0'dan küçük olamaz.");
             }
 
-            this.ProductId = productId;
-            this.ProductName = productName;
-            this.UnitPrice = unitPrice;
+            ProductId = productId;
+            ProductName = productName;
+            UnitPrice = unitPrice;
         }
         public void UpdatePrice(decimal newPrice)
         {

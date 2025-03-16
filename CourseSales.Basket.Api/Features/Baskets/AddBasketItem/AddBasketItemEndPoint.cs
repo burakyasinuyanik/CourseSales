@@ -17,7 +17,7 @@ namespace CourseSales.Basket.Api.Features.Baskets.AddBasketItem
                 })
                 .MapToApiVersion(1, 0)
                 .WithName("AddBasketItem")
-                .AddEndpointFilter<ValidationFilter<AddBasketCommandValidator>>();
+                .AddEndpointFilter<ValidationFilter<AddBasketItemCommand>>();
                 
 
 

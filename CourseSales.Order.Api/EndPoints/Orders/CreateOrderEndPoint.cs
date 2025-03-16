@@ -1,5 +1,6 @@
 ﻿using CourseSales.Order.Application.Features.Orders.Create;
 using CourseSales.Shared.Extensions;
+using CourseSales.Shared.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace CourseSales.Order.Api.EndPoints.Orders
 
                 result.ToGenericResult();
             })
+                .AddEndpointFilter<ValidationFilter<CreateOrderCommand>>()
                 .WithName("CreateOrder")
                 .MapToApiVersion(1,0)
                 .Produces<Guid>(StatusCodes.Status201Created)

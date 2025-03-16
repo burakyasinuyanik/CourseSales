@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddOpenApi();
-builder.Services.AddCommonServiceExt(typeof(OrderAssembly));
+builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
 builder.Services.AddVersioningExt();
 builder.Services.AddSwaggerGen();
 
