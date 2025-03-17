@@ -9,7 +9,8 @@ namespace CourseSales.Order.Api.EndPoints.Orders
             app.MapGroup("api/v{version:apiVersion}/orders")
                 .WithTags("Orders")
                 .WithApiVersionSet(apiVersionSet)
-                .CreateOrderGroupItemPoint();
+                .CreateOrderGroupItemPoint()
+                .GetOrderGroupItemEndPoint();
         }
     }
 }
