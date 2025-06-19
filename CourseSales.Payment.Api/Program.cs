@@ -1,4 +1,6 @@
+using CourseSales.Payment.Api.Repositories;
 using CourseSales.Shared.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +9,10 @@ builder.Services.AddOpenApi();
 builder.Services.AddCommonServiceExt(typeof(PaymentAssembly));
 builder.Services.AddVersioningExt();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseInMemoryDatabase("payment-in-memory-db");
+});
 var app = builder.Build();
 
 
