@@ -5,8 +5,7 @@ namespace CourseSales.Payment.Api.Repositories
     public class AppDbContext(DbContextOptions options) : DbContext(options)
     {
 
-
-
+        public DbSet<Payment> Payments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Payment>(entity =>
