@@ -6,15 +6,15 @@ using System.Net;
 
 namespace CourseSales.Payment.Api.Feature.Payment.Create
 {
-    public class CreatePaymentCommandHandler(AppDbContext appDbContext, IIdentityService identityService) : IRequestHandler<CreatePaymentCommand, ServiceResult>
+    public class CreatePaymentCommandHandler(AppDbContext appDbContext, IIdentityService identityService) : IRequestHandler<CreatePaymentCommand, ServiceResult<Guid>>
     {
-        public async Task<ServiceResult> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
+        public async Task<ServiceResult<Guid>> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
         {
             var (isSuccess, errorMessage) = await ExternalPaymentProcessAsync(request.CardNumber, request.CardHolderName, request.CardExpirationDate, request.CardSecurityNumber, request.Amount);
 
             if (!isSuccess)
             {
-                return ServiceResult.Error("Ödeme Başarısız!", errorMessage!, HttpStatusCode.BadRequest);
+                return ServiceResult<Guid>.Error("Ödeme Başarısız!", errorMessage!, HttpStatusCode.BadRequest);
             }
             var userId =  identityService.GetUserId;
             var newPayment = new Repositories.Payment(userId, request.OrderCode, request.Amount);
@@ -23,7 +23,7 @@ namespace CourseSales.Payment.Api.Feature.Payment.Create
             await appDbContext.Payments.AddAsync(newPayment);
              appDbContext.SaveChanges();
 
-            return ServiceResult.SuccessAsNoContent();
+            return ServiceResult<Guid>.SuccessAsOk(newPayment.Id);
         }
 
 
