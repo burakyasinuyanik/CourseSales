@@ -18,7 +18,8 @@ namespace CourseSales.Payment.Api.Feature.Payment.Create
                 .MapToApiVersion(1,0)
                 .Produces(StatusCodes.Status204NoContent)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
-                .Produces<ProblemDetails>(StatusCodes.Status502BadGateway);
+                .Produces<ProblemDetails>(StatusCodes.Status502BadGateway)
+                .RequireAuthorization("Password");
 
             return group;
         }
