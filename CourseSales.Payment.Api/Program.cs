@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddCommonServiceExt(typeof(PaymentAssembly));
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddVersioningExt();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -27,8 +28,9 @@ if (app.Environment.IsDevelopment())
    
 }
 
-app.UseHttpsRedirection();
 
+app.UseAuthentication();
+app.UseAuthorization();
 
 
 

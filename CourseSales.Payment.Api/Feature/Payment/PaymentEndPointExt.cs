@@ -12,7 +12,8 @@ namespace CourseSales.Payment.Api.Feature.Payment
                 .WithApiVersionSet(versionSet)
                 .WithTags("Payment")
                 .CreatePaymentGroupItemEndPoint()
-                .GetAllPaymentsByUserIdGroupItemEndpoint();
+                .GetAllPaymentsByUserIdGroupItemEndpoint()
+                .RequireAuthorization();
         }
     }
 }

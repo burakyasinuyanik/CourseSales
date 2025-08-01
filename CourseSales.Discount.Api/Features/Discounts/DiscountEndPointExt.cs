@@ -17,7 +17,8 @@ namespace CourseSales.Discount.Api.Features.Discounts
                  .GetDiscountByIdGroupItemEndPoint()
                  .GetAllDiscountGroupItemEndPoint()
                  .WithTags("Discount")
-                 .WithApiVersionSet(versionSet);
+                 .WithApiVersionSet(versionSet)
+                 .RequireAuthorization();
                 
 
         }

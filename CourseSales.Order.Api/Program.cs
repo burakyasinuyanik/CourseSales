@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddVersioningExt();
 builder.Services.AddSwaggerGen();
 
@@ -36,7 +37,8 @@ if (app.Environment.IsDevelopment())
 app.AddOrderGroupEndPointExt(app.AddVersionSetExt());
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
+app.UseAuthorization();
 
 
 app.Run();

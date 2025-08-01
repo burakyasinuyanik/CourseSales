@@ -16,7 +16,7 @@
                 .NotEmpty().WithMessage("Fiyat boş olamaz");
 
             RuleFor(x => x.CategoryId)
-                .NotEmpty().WithMessage("Kategori ıd boş olamaz");
+                .NotNull().NotEmpty().WithMessage("Kategori ıd boş olamaz");
 
 
         }

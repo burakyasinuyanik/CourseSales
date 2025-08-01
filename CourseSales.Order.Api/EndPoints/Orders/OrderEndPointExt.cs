@@ -10,7 +10,8 @@ namespace CourseSales.Order.Api.EndPoints.Orders
                 .WithTags("Orders")
                 .WithApiVersionSet(apiVersionSet)
                 .CreateOrderGroupItemPoint()
-                .GetOrderGroupItemEndPoint();
+                .GetOrderGroupItemEndPoint()
+                .RequireAuthorization();
         }
     }
 }

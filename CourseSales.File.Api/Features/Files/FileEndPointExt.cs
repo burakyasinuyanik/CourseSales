@@ -13,7 +13,8 @@ namespace CourseSales.File.Api.Features.Files
                 .DeleteFileCommandGroupItemEndPoint()
                 .WithTags("files")
                 .WithApiVersionSet(apiVersionSet)
-                .DisableAntiforgery();
+                .DisableAntiforgery()
+                .RequireAuthorization();
         }
     }
 }

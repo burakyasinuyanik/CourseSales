@@ -14,6 +14,7 @@ builder.Services.AddVersioningExt();
 builder.Services.AddOptionExt();
 builder.Services.AddDataBaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(DiscountAssembly));
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 
 var app = builder.Build();
 
@@ -35,7 +36,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
+app.UseAuthorization();
 
 
 app.Run();
