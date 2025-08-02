@@ -4,5 +4,6 @@
     {
         public Guid GetUserId { get; }
         public string UserName { get; }
+        public List<string> Roles { get; } 
     }
 }

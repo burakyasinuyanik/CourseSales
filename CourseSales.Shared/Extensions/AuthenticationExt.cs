@@ -18,6 +18,7 @@ namespace CourseSales.Shared.Extensions
                     options.Authority = identityOption!.Address;
                     options.Audience = identityOption.Audience;
                     options.RequireHttpsMetadata = false;
+                    
 
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {
@@ -27,7 +28,11 @@ namespace CourseSales.Shared.Extensions
 
                         ValidateLifetime = true,
 
-                        ValidateIssuerSigningKey = true
+                        ValidateIssuerSigningKey = true,
+
+                        RoleClaimType = "roles",
+
+                        NameClaimType= "preferred_username"
                     };
                 })
                 .AddJwtBearer("ClientCredentialSchema", options =>
@@ -63,6 +68,7 @@ namespace CourseSales.Shared.Extensions
                     policy.RequireClaim(ClaimTypes.Email);
 
                 });
+
             });
             return services;
         }

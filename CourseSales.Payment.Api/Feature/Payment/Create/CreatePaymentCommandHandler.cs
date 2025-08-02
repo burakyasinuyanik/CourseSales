@@ -11,7 +11,9 @@ namespace CourseSales.Payment.Api.Feature.Payment.Create
     {
         public async Task<ServiceResult<Guid>> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
         {
-            var claims = httpContextAccessor.HttpContext?.User.Claims;
+            var userId = identityService.GetUserId;
+            var userName=identityService.UserName;
+
 
             var (isSuccess, errorMessage) = await ExternalPaymentProcessAsync(request.CardNumber, request.CardHolderName, request.CardExpirationDate, request.CardSecurityNumber, request.Amount);
 
@@ -19,7 +21,7 @@ namespace CourseSales.Payment.Api.Feature.Payment.Create
             {
                 return ServiceResult<Guid>.Error("Ödeme Başarısız!", errorMessage!, HttpStatusCode.BadRequest);
             }
-            var userId =  identityService.GetUserId;
+            
             var newPayment = new Repositories.Payment(userId, request.OrderCode, request.Amount);
             newPayment.Status=PaymentStatus.Success;
 

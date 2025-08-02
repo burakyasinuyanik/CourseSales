@@ -14,7 +14,7 @@ namespace CourseSales.Shared.Extensions
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining(assembly);
             services.AddAutoMapper(assembly);
-            services.AddScoped<IIdentityService, IdentityServiceFake>();
+            services.AddScoped<IIdentityService, IdentityService>();
             return services;
         }
     }
