@@ -14,7 +14,7 @@ namespace CourseSales.Catalog.Api.Features.Categories.Create
                     );
             }
 
-            var category = new Category { Name = request.Name, Id = NewId.NextSequentialGuid() };
+            var category = new Category { Name = request.Name, Id = Guid.CreateVersion7() };
 
             await context.Categories.AddAsync(category, cancellationToken);
             await context.SaveChangesAsync(cancellationToken);

@@ -25,7 +25,7 @@
             };
 
             newCourse.Created = DateTime.Now;
-            newCourse.Id = NewId.NextSequentialGuid();
+            newCourse.Id = Guid.CreateVersion7();
             context.Courses.Add(newCourse);
             await context.SaveChangesAsync(cancellationToken);
 

@@ -14,7 +14,7 @@ namespace CourseSales.Catalog.Api.Repositories
                 {
                     var categories = new List<Category>
                      {
-                         new (){Id=NewId.NextSequentialGuid(),Name="Development"}
+                         new (){Id=Guid.CreateVersion7(),Name="Development"}
                      };
                     dbContext.Categories.AddRange(categories);
                     await dbContext.SaveChangesAsync();
@@ -22,12 +22,12 @@ namespace CourseSales.Catalog.Api.Repositories
                 if (!dbContext.Courses.Any())
                 {
                     var category = await dbContext.Categories.FirstAsync();
-                    var newRandomUserId = NewId.NextSequentialGuid();
+                    var newRandomUserId = Guid.CreateVersion7();
                     var courses = new List<Course>
                      {
                          new()
                          {
-                             Id = NewId.NextSequentialGuid(),
+                             Id = Guid.CreateVersion7(),
                              CategoryId = category.Id,
                              Description = "seed data açıklama",
                              ImageUrl = "/seedurl",

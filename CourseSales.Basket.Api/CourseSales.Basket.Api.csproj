@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CourseSales.Bus\CourseSales.Bus.csproj" />
     <ProjectReference Include="..\CourseSales.Shared\CourseSales.Shared.csproj" />
   </ItemGroup>
 
