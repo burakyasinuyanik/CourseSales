@@ -1,9 +1,8 @@
 using CourseSales.File.Api;
 using CourseSales.File.Api.Features.Files;
 using CourseSales.Shared.Extensions;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.FileProviders;
-
+using CourseSales.Bus;
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -14,6 +13,7 @@ builder.Services.AddVersioningExt();
 builder.Services.AddCommonServiceExt(typeof(FileAssembly));
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+builder.Services.AddMasstransitExt(builder.Configuration);
 
 var app = builder.Build();
 

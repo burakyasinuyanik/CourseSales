@@ -2,6 +2,7 @@ using CourseSales.Payment.Api.Feature.Payment;
 using CourseSales.Payment.Api.Repositories;
 using CourseSales.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
+using CourseSales.Bus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseInMemoryDatabase("payment-in-memory-db");
 });
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
+
+
 var app = builder.Build();
 app.AddPaymentGroupEntPointExt(app.AddVersionSetExt());
 

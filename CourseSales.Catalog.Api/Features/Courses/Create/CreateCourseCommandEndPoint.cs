@@ -8,7 +8,7 @@ namespace CourseSales.Catalog.Api.Features.Courses.Create
         public static RouteGroupBuilder CreateCourseGroupItemEndPoint(this RouteGroupBuilder group)
         {
 
-            group.MapPost("/", async (CreateCourseCommand command, IMediator mediator) =>
+            group.MapPost("/", async ([FromForm]CreateCourseCommand command, IMediator mediator) =>
             {
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
@@ -18,7 +18,8 @@ namespace CourseSales.Catalog.Api.Features.Courses.Create
             .Produces(StatusCodes.Status404NotFound)
             .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
             .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-            .MapToApiVersion(1, 0);
+            .MapToApiVersion(1, 0)
+            .DisableAntiforgery();
             
 
             return group;

@@ -3,6 +3,7 @@ using CourseSales.Discount.Api.Features.Discounts;
 using CourseSales.Discount.Api.Options;
 using CourseSales.Discount.Api.Repositories;
 using CourseSales.Shared.Extensions;
+using CourseSales.Bus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddOptionExt();
 builder.Services.AddDataBaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(DiscountAssembly));
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 var app = builder.Build();
 

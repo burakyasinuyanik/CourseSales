@@ -1,6 +1,7 @@
 using CourseSales.Basket.Api;
 using CourseSales.Basket.Api.Features.Baskets;
 using CourseSales.Shared.Extensions;
+using CourseSales.Bus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCommonServiceExt(typeof(BasketAssembly));
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 builder.Services.AddVersioningExt();
 builder.Services.AddScoped<BasketService>();

@@ -2,7 +2,7 @@ using CourseSales.Catalog.Api;
 using CourseSales.Catalog.Api.Features.Categories;
 using CourseSales.Catalog.Api.Features.Courses;
 using CourseSales.Catalog.Api.Options;
-
+using CourseSales.Bus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +14,7 @@ builder.Services.AddOptionsExt();
 builder.Services.AddDataBaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 builder.Services.AddVersioningExt();
 

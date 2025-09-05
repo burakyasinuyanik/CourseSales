@@ -5,6 +5,7 @@ using CourseSales.Order.Persistence;
 using CourseSales.Order.Persistence.Repositories;
 using CourseSales.Order.Persistence.UnitOfWork;
 using CourseSales.Shared.Extensions;
+using CourseSales.Bus;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
+
+
 var app = builder.Build();
 
 
