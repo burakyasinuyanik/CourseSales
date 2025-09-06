@@ -1,4 +1,5 @@
-﻿using CourseSales.Order.Application.Contracts.Repositories;
+﻿using CourseSales.Bus.Events;
+using CourseSales.Order.Application.Contracts.Repositories;
 using CourseSales.Order.Application.Contracts.UnitOfWork;
 using CourseSales.Order.Application.Dto;
 using CourseSales.Order.Domain.Entities;
@@ -18,7 +19,8 @@ namespace CourseSales.Order.Application.Features.Orders.Create
     public class CreateOrderCommandHandler(IOrderRepository orderRepository,
         IGenericRepository<int,Adress> addressRepository,
         IIdentityService identityService,
-        IUnitOfWork unitOfWork) : IRequestHandler<CreateOrderCommand, ServiceResult>
+        IUnitOfWork unitOfWork,
+        IPublishEndpoint publishEndpoint) : IRequestHandler<CreateOrderCommand, ServiceResult>
     {
         public  async Task<ServiceResult> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
@@ -52,6 +54,7 @@ namespace CourseSales.Order.Application.Features.Orders.Create
             orderRepository.Update(order);
 
            await unitOfWork.CommitAsync(cancellationToken);
+          await  publishEndpoint.Publish(new OrderCreatedEvent(order.Id, identityService.GetUserId), cancellationToken);
             return ServiceResult.SuccessAsNoContent();
         }
     }

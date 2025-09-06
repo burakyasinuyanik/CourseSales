@@ -5,9 +5,10 @@ using Microsoft.Extensions.Caching.Distributed;
 
 namespace CourseSales.Basket.Api.Features.Baskets
 {
-    public class BasketService(IIdentityService identity,IDistributedCache distributedCache)
+    public class BasketService(IIdentityService identity, IDistributedCache distributedCache)
     {
-        private string GetCacheKey()=> String.Format(BasketConst.BasketCacheKey, identity.GetUserId);
+        private string GetCacheKey() => String.Format(BasketConst.BasketCacheKey, identity.GetUserId);
+        private string GetCacheKey(Guid userId) => String.Format(BasketConst.BasketCacheKey,userId);
         public async Task<string?> GetBasketFromCache(CancellationToken cancellationToken)
         {
             var cacheKey = GetCacheKey();
@@ -19,6 +20,10 @@ namespace CourseSales.Basket.Api.Features.Baskets
             var basketAsString = JsonSerializer.Serialize(basket);
             await distributedCache.SetStringAsync(GetCacheKey(), basketAsString, cancellationToken);
         }
+        public async Task DeleteBasketCacheAsync(Guid userId)
+        {
+            await distributedCache.RemoveAsync(GetCacheKey(userId));
 
+        }
     }
 }

@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCommonServiceExt(typeof(BasketAssembly));
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
-builder.Services.AddCommonMasstransitExt(builder.Configuration);
+builder.Services.AddMasstransitExt(builder.Configuration);
 
 builder.Services.AddVersioningExt();
 builder.Services.AddScoped<BasketService>();
