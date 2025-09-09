@@ -7,9 +7,9 @@ using System.Net;
 namespace CourseSales.Payment.Api.Feature.Payment.Create
 {
     public class CreatePaymentCommandHandler(AppDbContext appDbContext, IIdentityService identityService,
-       IHttpContextAccessor httpContextAccessor ) : IRequestHandler<CreatePaymentCommand, ServiceResult<Guid>>
+       IHttpContextAccessor httpContextAccessor ) : IRequestHandler<CreatePaymentCommand, ServiceResult<CreatePaymentResponse>>
     {
-        public async Task<ServiceResult<Guid>> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
+        public async Task<ServiceResult<CreatePaymentResponse>> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
         {
             var userId = identityService.GetUserId;
             var userName=identityService.UserName;
@@ -19,7 +19,7 @@ namespace CourseSales.Payment.Api.Feature.Payment.Create
 
             if (!isSuccess)
             {
-                return ServiceResult<Guid>.Error("Ödeme Başarısız!", errorMessage!, HttpStatusCode.BadRequest);
+                return ServiceResult<CreatePaymentResponse>.Error("Ödeme Başarısız!", errorMessage!, HttpStatusCode.BadRequest);
             }
             
             var newPayment = new Repositories.Payment(userId, request.OrderCode, request.Amount);
@@ -28,7 +28,7 @@ namespace CourseSales.Payment.Api.Feature.Payment.Create
             await appDbContext.Payments.AddAsync(newPayment);
              appDbContext.SaveChanges();
 
-            return ServiceResult<Guid>.SuccessAsOk(newPayment.Id);
+            return ServiceResult<CreatePaymentResponse>.SuccessAsOk(new CreatePaymentResponse(true,null,newPayment.Id));
         }
 
 
