@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseSales.Shared.Options
 {
-    public class AdressUrlOption
+    public class AddressUrlOption
     {
         public required string PaymentUrl { get; set; }
     }
