@@ -1,11 +1,58 @@
 @baseAddress = https://localhost:7064
-@token =eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI1YXZmVzE2ZmdsUzZTMU95ZVdkVWVtZ3ZGSWJRY25feHlKMFcxOGNXYW9RIn0.eyJleHAiOjE3NTQxMzE2OTMsImlhdCI6MTc1NDEzMTM5MywianRpIjoiODRiZjFlMzUtOWM0Yi00OTAyLWFhMDctZjZlMTU3OWRmOWM5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9Db3Vyc2VTYWxlc1RlbmFudCIsImF1ZCI6WyJmaWxlLmFwaSIsImNhdGFsb2cuYXBpIiwiZGlzY291bnQuYXBpIiwiYmFza2V0LmFwaSIsImdhdGV3YXkuYXBpIiwicGF5bWVudC5hcGkiLCJvcmRlci5hcGkiLCJhY2NvdW50Il0sInN1YiI6IjY5ZTQwM2Y0LTFiNDItNGI4NC05MDVhLWUxYzk4OGRmZjE2NyIsInR5cCI6IkJlYXJlciIsImF6cCI6IndlYiIsInNpZCI6IjI1MTNkYjg1LTM0NWUtNGM0Ni1hMzk3LTU1NjQ5NjkwN2JkMiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicGhvbmUgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiY2l0eSI6ImtheXNlcmkiLCJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1jb3Vyc2VzYWxlc3RlbmFudCJdLCJuYW1lIjoiTmlzYSBVeWFuxLFrIiwicHJlZmVycmVkX3VzZXJuYW1lIjoibmlzYXV5YW5payIsImdpdmVuX25hbWUiOiJOaXNhIiwiZmFtaWx5X25hbWUiOiJVeWFuxLFrIiwiZW1haWwiOiJuaXNhQG5pc2EuY29tIn0.MYcEjJlthTjU0w3zsUvpMSdG1QiGxWlgNm9GiOLubtLRqs-9sloIg8qSDJdNoiueK-FhkXeg4Awq21CGSZ6wBeutLDqCQ1-rEi6fuIrfZsSEmGpyvrzYecLLljDpMx0v_VZWqM4hHJP1a2PcSvejr9PceTnOQWij4seZ9cMoll-SyWSSszqVkQP1Bs9cWb6fmHxNej9Z5XHy69_W2o4ph8vmLUHo-2qlB2vUudKZExCAwDNgF6jToumzUX8gbWcD-3hvY8MxU4JVma59hwr9jsAT4pXzKxVZduvA549q0OrYUOP_gDW7V_pQNDDX46VGLzcjI937N9hKTCb1knrYkw
+@courseId=01991e99-67a5-7618-90ee-f8129e549c57
+@token =eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI1YXZmVzE2ZmdsUzZTMU95ZVdkVWVtZ3ZGSWJRY25feHlKMFcxOGNXYW9RIn0.eyJleHAiOjE3NTc1MzE0NTksImlhdCI6MTc1NzUzMTE1OSwianRpIjoiYTc2MDhiYzgtOGQ0Yy00ZjAzLWI0YTctMTA0ZDQyZGZmNTk5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9Db3Vyc2VTYWxlc1RlbmFudCIsImF1ZCI6WyJmaWxlLmFwaSIsImNhdGFsb2cuYXBpIiwiZGlzY291bnQuYXBpIiwiYmFza2V0LmFwaSIsImdhdGV3YXkuYXBpIiwicGF5bWVudC5hcGkiLCJvcmRlci5hcGkiLCJhY2NvdW50Il0sInN1YiI6IjY5ZTQwM2Y0LTFiNDItNGI4NC05MDVhLWUxYzk4OGRmZjE2NyIsInR5cCI6IkJlYXJlciIsImF6cCI6IndlYiIsInNpZCI6IjUyZjIyYzgzLWY3NGUtNDFkZi05NGQ1LTBmNzcwMWNmODRhNiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicGhvbmUgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiY2l0eSI6ImtheXNlcmkiLCJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1jb3Vyc2VzYWxlc3RlbmFudCJdLCJuYW1lIjoiTmlzYSBVeWFuxLFrIiwicHJlZmVycmVkX3VzZXJuYW1lIjoibmlzYXV5YW5payIsImdpdmVuX25hbWUiOiJOaXNhIiwiZmFtaWx5X25hbWUiOiJVeWFuxLFrIiwiZW1haWwiOiJuaXNhQG5pc2EuY29tIn0.IR2cO117SIwzSXYuAeteGYEYJVRpSB9ejGO6kILByFSUy9mAtOotRVkZdBLQhOTtfTgDz8EXaPExLXLGlz9BdDDQJUBV3t9O-TAwpEY7XjF0cFS2doreM3VUM5pfSgEvso_jXu0jJ1bwqk-0NrLRFZbVaek504_WfM0xzOEPpiDCZPNSyyvQ1EivF9MAUr0fCIw058fx_osoT66o9JsSl-70Kkuomhxq3CgqvHe7Y9Nsnav2QHIeO4MqHROiBWl24McSGlWSOurQobudPeijlxadQhs58Qrl1_SpA4phdAEg8l_a0Vu2dXUO5_A_qptPhSlRyH-5AyOd5OQmBcba0Q
 
+
+### Basket Service - Get User Basket
+GET {{baseAddress}}/v1/baskets/user
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Basket Service - Add Item to Basket
+POST {{baseAddress}}/v1/baskets/item
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+{
+  "courseId":"{{courseId}}",
+  "courseName": "Python",
+  "coursePrice": 200
+}
+
+
+### Order Service - Create Order
+POST {{baseAddress}}/v1/orders
+Content-Type: application/json
+Authorization: Bearer {{token}}
+Accept: application/json
+{
+  "Address": {
+    "Line": "123 Main St",
+    "Province": "Ontario",
+    "District": "Toronto",
+    "ZipCode": "12345",
+    "Street": "Main St"
+  },
+  "Payment": {
+    "CardNumber": "4111111111111111",
+    "CardHolderName": "John Doe",
+    "Expiration": "12/25",
+    "Cvc": "123",
+    "Amount": 150.75
+  },
+  "Items": [
+    {
+      "ProductId": "{{courseId}}",
+      "ProductName": "Python",
+      "UnitPrice": 200
+    }
+  ]
+}
 
 ### Create a Payment
 POST {{baseAddress}}/v1/payments
 Content-Type: application/json
-Accept: application/json
+Accept: application/json,
 Authorization: Bearer {{token}}
 {
   "OrderCode": "6657c883-2e9b-43e4-a421-45f9ef25b415",
@@ -15,6 +62,7 @@ Authorization: Bearer {{token}}
   "CardSecurityNumber": "123",
   "Amount": 150.75
 }
+
 ### Get All Payments
 GET {{baseAddress}}/v1/payments
 Accept: application/json

@@ -19,7 +19,7 @@ namespace CourseSales.Basket.Api.Features.Baskets
                 .GetBasketItemGroupItem()
                 .ApplyDiscountCouponGroupEndPoint()
                 .RemoveDiscountCouponGroupItemEndPoint()
-                .RequireAuthorization();
+                .RequireAuthorization("Password");
 
         }
     }

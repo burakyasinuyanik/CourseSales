@@ -19,7 +19,7 @@ namespace CourseSales.Payment.Api.Feature.Payment.GetAllPaymentsByUserId
                 .Produces(StatusCodes.Status204NoContent)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
                 .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-                .RequireAuthorization("ClientCredential");
+                .RequireAuthorization("Password");
 
             return group;
         }

@@ -11,7 +11,7 @@ namespace CourseSales.Order.Api.EndPoints.Orders
                 .WithApiVersionSet(apiVersionSet)
                 .CreateOrderGroupItemPoint()
                 .GetOrderGroupItemEndPoint()
-                .RequireAuthorization();
+                .RequireAuthorization("Password");
         }
     }
 }

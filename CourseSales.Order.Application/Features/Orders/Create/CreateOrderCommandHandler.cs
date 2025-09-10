@@ -1,4 +1,5 @@
 ﻿using CourseSales.Bus.Events;
+using CourseSales.Order.Application.Contracts.Refit.PaymentService;
 using CourseSales.Order.Application.Contracts.Repositories;
 using CourseSales.Order.Application.Contracts.UnitOfWork;
 using CourseSales.Order.Application.Dto;
@@ -17,16 +18,17 @@ using System.Threading.Tasks;
 namespace CourseSales.Order.Application.Features.Orders.Create
 {
     public class CreateOrderCommandHandler(IOrderRepository orderRepository,
-        IGenericRepository<int,Adress> addressRepository,
+        IGenericRepository<int, Adress> addressRepository,
         IIdentityService identityService,
         IUnitOfWork unitOfWork,
-        IPublishEndpoint publishEndpoint) : IRequestHandler<CreateOrderCommand, ServiceResult>
+        IPublishEndpoint publishEndpoint,
+        IPaymentService paymentService) : IRequestHandler<CreateOrderCommand, ServiceResult>
     {
-        public  async Task<ServiceResult> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+        public async Task<ServiceResult> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            if(!request.Items.Any())
-                return ServiceResult.Error("Sipariş içerisinde ürün bulunmamaktadır","Sipariş içerisinden en az bir ürün bulunması gerekmektedir.",HttpStatusCode.BadRequest);
-        
+            if (!request.Items.Any())
+                return ServiceResult.Error("Sipariş içerisinde ürün bulunmamaktadır", "Sipariş içerisinden en az bir ürün bulunması gerekmektedir.", HttpStatusCode.BadRequest);
+
             var newAdress = new Adress
             {
                 District = request.Address.District,
@@ -44,17 +46,27 @@ namespace CourseSales.Order.Application.Features.Orders.Create
             }
 
             order.Adress = newAdress;
-          
+
             orderRepository.Add(order);
             await unitOfWork.CommitAsync(cancellationToken);
 
-            var paymentId = Guid.Empty;
+            CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest(order.Code, request.Payment.CardNumber, request.Payment.CardHolderName, request.Payment.Expiration, request.Payment.Cvc, order.TotalPrice);
 
+            var paymentResponse = await paymentService.CreatePaymentAsync(createPaymentRequest);
+
+            if (paymentResponse.Status == false)
+            {
+                return ServiceResult.Error(paymentResponse.ErrorMessage!, HttpStatusCode.InternalServerError);
+            }
+
+
+            var paymentId = paymentResponse.PaymentId!.Value;
             order.SetPaidStatus(paymentId);
+
             orderRepository.Update(order);
 
-           await unitOfWork.CommitAsync(cancellationToken);
-          await  publishEndpoint.Publish(new OrderCreatedEvent(order.Id, identityService.GetUserId), cancellationToken);
+            await unitOfWork.CommitAsync(cancellationToken);
+            await publishEndpoint.Publish(new OrderCreatedEvent(order.Id, identityService.GetUserId), cancellationToken);
             return ServiceResult.SuccessAsNoContent();
         }
     }
