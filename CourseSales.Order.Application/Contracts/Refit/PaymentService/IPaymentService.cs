@@ -11,5 +11,7 @@ namespace CourseSales.Order.Application.Contracts.Refit.PaymentService
     {
         [Post("/api/v1/payments")]
         Task<CreatePaymentResponse> CreatePaymentAsync([Body] CreatePaymentRequest paymentRequest);
+        [Get("/api/v1/payments/status/{orderCode}")]
+        Task<GetPaymentStatusResponse> GetaymentStatusAsync(string orderCode);
     }
 }

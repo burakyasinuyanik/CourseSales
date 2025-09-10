@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning.Builder;
 using CourseSales.Payment.Api.Feature.Payment.Create;
 using CourseSales.Payment.Api.Feature.Payment.GetAllPaymentsByUserId;
+using CourseSales.Payment.Api.Feature.Payment.GetStatus;
 
 namespace CourseSales.Payment.Api.Feature.Payment
 {
@@ -12,7 +13,8 @@ namespace CourseSales.Payment.Api.Feature.Payment
                 .WithApiVersionSet(versionSet)
                 .WithTags("Payment")
                 .CreatePaymentGroupItemEndPoint()
-                .GetAllPaymentsByUserIdGroupItemEndpoint();
+                .GetAllPaymentsByUserIdGroupItemEndpoint()
+                .GetPaymentStatusGroupItemQueryEndPoint();
                 
         }
     }
