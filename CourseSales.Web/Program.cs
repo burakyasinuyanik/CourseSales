@@ -1,7 +1,15 @@
+using CourseSales.Web.Extensions;
+using CourseSales.Web.Pages.Auth.SignUp;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddOptionsExt();
+builder.Services.AddHttpClient<SignUpService>(options => { 
+
+
+});
 
 var app = builder.Build();
 

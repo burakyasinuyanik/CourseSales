@@ -3,7 +3,7 @@
 namespace CourseSales.Web.Pages.Auth.SignUp
 {
     public record class SignUpViewModel(
-        [Display(Name ="First Name:")] string FirsName,
+        [Display(Name ="First Name:")] string FirstName,
         [Display(Name = "Last Name:")] string LastName,
         [Display(Name = "UserName:")] string UserName,
         [Display(Name = "Email:")] string Email,
@@ -11,7 +11,7 @@ namespace CourseSales.Web.Pages.Auth.SignUp
         [Display(Name = "Password Confirm:")] string PasswordConfirm)
     {
         public static SignUpViewModel Empty => new(
-            FirsName: string.Empty,
+            FirstName: string.Empty,
             LastName: string.Empty,
             UserName: string.Empty,
             Email: string.Empty,
@@ -19,7 +19,7 @@ namespace CourseSales.Web.Pages.Auth.SignUp
             PasswordConfirm: string.Empty);
         public static SignUpViewModel GetExlampleModel=>
             new(
-                FirsName: "burak",
+                FirstName: "burak",
                 LastName: "yasin",
                 UserName: "burakyasin",
                 Email: "burak@burak.com",
