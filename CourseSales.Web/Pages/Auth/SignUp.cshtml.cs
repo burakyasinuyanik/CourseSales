@@ -14,6 +14,10 @@ namespace CourseSales.Web.Pages.Auth
         }
         public async Task<IActionResult> OnpostAsync()
         {
+            if(!ModelState.IsValid)
+            {
+                return Page();
+            }
             var result = await signUpService.CreateAccount(SignUpViewModel);
             if (result.IsFail)
             {
