@@ -69,6 +69,32 @@ namespace CourseSales.Web.Services
             });
             return tokenResponse;
         }
+
+        public async Task<TokenResponse> GetTokenByClientCredentials()
+        {
+            var discoveryRequest = new DiscoveryDocumentRequest()
+            {
+                Address = identityOption.Admin.Address,
+                Policy =
+                {
+                    RequireHttps = false
+                }
+            };
+            httpClient.BaseAddress = new Uri(identityOption.Admin.Address);
+            var discoveryResponse = await httpClient.GetDiscoveryDocumentAsync();
+            if (discoveryResponse.IsError)
+            {
+                throw new Exception(discoveryResponse.Error);
+            }
+            var tokenResponse = await httpClient.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+            {
+                Address = identityOption.Admin.Address,
+                ClientId = identityOption.Admin.ClientId,
+                ClientSecret = identityOption.Admin.ClientSecret,
+               
+            });
+            return tokenResponse;
+        }
     }
 
 }

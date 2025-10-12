@@ -40,8 +40,12 @@ namespace CourseSales.Web.DelegateHandlers
                 throw new UnauthorizedAccessException("No Refresh token is null or empty");
 
             }
+            var tokenResponse= await tokenService.GetTokenByRefreshToken(refreshToken);
+            if(tokenResponse.IsError) throw new UnauthorizedAccessException($"{tokenResponse.Error}");
 
+            request.SetBearerToken(tokenResponse.AccessToken!);
 
+            return await base.SendAsync(request, cancellationToken);
         }
     }
 }

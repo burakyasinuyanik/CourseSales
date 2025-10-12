@@ -1,8 +1,12 @@
+using CourseSales.Web.DelegateHandlers;
 using CourseSales.Web.Extensions;
+using CourseSales.Web.Options;
 using CourseSales.Web.Pages.Auth.SignIn;
 using CourseSales.Web.Pages.Auth.SignUp;
 using CourseSales.Web.Services;
+using CourseSales.Web.Services.Refit;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Refit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,18 +14,29 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddOptionsExt();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddHttpClient<SignUpService>(options => { 
+builder.Services.AddHttpClient<SignUpService>(options =>
+{
 
 
 });
 builder.Services.AddHttpClient<SignInService>();
 builder.Services.AddScoped<TokenService>();
 
-builder.Services.AddAuthentication(configureOptions => {
+builder.Services.AddRefitClient<ICatalogRefitService>()
+    .ConfigureHttpClient(c =>
+    {
+        var gatewayOption = builder.Configuration.GetSection(nameof(GatewayOption)).Get<GatewayOption>();
+        c.BaseAddress = new Uri(gatewayOption!.BaseAddress);
+    })
+    .AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
+    .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
+
+builder.Services.AddAuthentication(configureOptions =>
+{
     configureOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     configureOptions.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
-    })
+})
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
     {
         options.ExpireTimeSpan = TimeSpan.FromDays(1);
