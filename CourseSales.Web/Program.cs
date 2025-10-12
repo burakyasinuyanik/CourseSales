@@ -15,7 +15,7 @@ builder.Services.AddHttpClient<SignUpService>(options => {
 
 });
 builder.Services.AddHttpClient<SignInService>();
-builder.Services.AddSingleton<TokenService>();
+builder.Services.AddScoped<TokenService>();
 
 builder.Services.AddAuthentication(configureOptions => {
     configureOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
