@@ -1,16 +1,40 @@
 ﻿using CourseSales.Web.Options;
 using CourseSales.Web.Pages.Auth.SignUp;
+using CourseSales.Web.Services;
 using Duende.IdentityModel.Client;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace CourseSales.Web.Pages.Auth.SignIn
 {
     public class SignInService(IdentityOption identityOption,
         HttpClient httpClient,
-        ILogger<SignInService> logger)
+        ILogger<SignInService> logger,
+        TokenService tokenService,
+        IHttpContextAccessor httpContextAccessor)
     {
 
+        public async Task<ServiceResult> AuthenticateAsync(SignInViewModel signInViewModel)
+        {
+            var tokenResponse = await GetClientAccessToken(signInViewModel);
+            if (tokenResponse.IsError)
+            {
 
-        private async Task<string> GetClientAccessToken(SignInViewModel signInViewModel)
+                return ServiceResult.Error(tokenResponse.Error, tokenResponse.ErrorDescription);
+            }
+            var userClaims = tokenService.ExtractClaims(tokenResponse.AccessToken!);
+            var authenticationProperties = tokenService.CreateAuthenticationProperties(tokenResponse);
+            var claimIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+            var claimsPrincipal = new ClaimsPrincipal(claimIdentity);
+
+            await httpContextAccessor.HttpContext!.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authenticationProperties);
+
+
+            return ServiceResult.Success();
+        }
+
+        private async Task<TokenResponse> GetClientAccessToken(SignInViewModel signInViewModel)
         {
             var discoveryRequest = new DiscoveryDocumentRequest()
             {
@@ -33,13 +57,10 @@ namespace CourseSales.Web.Pages.Auth.SignIn
                 ClientSecret = identityOption.Web.ClientSecret,
                 UserName = signInViewModel.Email!,
                 Password = signInViewModel.Password,
-                
+
             });
-            if (tokenResponse.IsError)
-            {
-                throw new Exception(tokenResponse.Error);
-            }
-            return tokenResponse.AccessToken!;
+
+            return tokenResponse!;
 
         }
     }

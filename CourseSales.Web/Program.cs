@@ -1,16 +1,36 @@
 using CourseSales.Web.Extensions;
+using CourseSales.Web.Pages.Auth.SignIn;
 using CourseSales.Web.Pages.Auth.SignUp;
+using CourseSales.Web.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddOptionsExt();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient<SignUpService>(options => { 
 
 
 });
+builder.Services.AddHttpClient<SignInService>();
+builder.Services.AddSingleton<TokenService>();
 
+builder.Services.AddAuthentication(configureOptions => {
+    configureOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    configureOptions.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+    })
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromDays(1);
+        options.Cookie.Name = "CourseSales";
+        options.AccessDeniedPath = "/Auth/AccessDenied";
+        options.LoginPath = "/Auth/SignIn";
+        //options.LogoutPath = "/Auth/SignOut";
+    });
+builder.Services.AddAuthorization();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,6 +45,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
