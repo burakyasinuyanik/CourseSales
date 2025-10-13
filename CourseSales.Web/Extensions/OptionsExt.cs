@@ -16,6 +16,12 @@ namespace CourseSales.Web.Extensions
               .ValidateDataAnnotations()
               .ValidateOnStart();
             services.AddSingleton<GatewayOption>(sp => sp.GetRequiredService<IOptions<GatewayOption>>().Value);
+
+
+            services.AddOptions<MicroServiceOption>().BindConfiguration(nameof(MicroServiceOption))
+              .ValidateDataAnnotations()
+              .ValidateOnStart();
+            services.AddSingleton<MicroServiceOption>(sp => sp.GetRequiredService<IOptions<MicroServiceOption>>().Value);
             return services;
         }
     }

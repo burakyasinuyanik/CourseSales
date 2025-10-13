@@ -5,15 +5,19 @@ namespace CourseSales.Web.Services.Refit
 {
     public interface ICatalogRefitService
     {
+        [Get("/v1/categories")]
+        Task<ApiResponse<List<CategoryDto>>> GetCategoriesAync();
+
+
         [Post("/v1/catalog/courses")]
-        Task<ApiResponse<ServiceResult>> CreateCourseAsync(CreateCourseRequest request);
+        Task<ApiResponse<Object>> CreateCourseAsync(CreateCourseRequest request);
 
 
         [Put("/v1/catalog/courses")]
-        Task<ApiResponse<ServiceResult>> UpdateCourseAsync(UpdateCourseRequest request);
+        Task<ApiResponse<Object>> UpdateCourseAsync(UpdateCourseRequest request);
 
 
         [Delete("/v1/catalog/courses/{id}")]
-        Task<ApiResponse<ServiceResult>> DeleteCourseAsync(Guid id);
+        Task<ApiResponse<Object>> DeleteCourseAsync(Guid id);
     }
 }
