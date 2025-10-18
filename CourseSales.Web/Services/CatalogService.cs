@@ -10,7 +10,7 @@ using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 namespace CourseSales.Web.Services
 {
     public class CatalogService(ICatalogRefitService catalogRefitService,
-        UserService userService,ILogger<CatalogService> logger)
+        UserService userService, ILogger<CatalogService> logger)
     {
         public async Task<ServiceResult<List<CategoryViewModel>>> GetCategoriesAsync()
         {
@@ -53,7 +53,7 @@ namespace CourseSales.Web.Services
             var course = await catalogRefitService.GetCourseByUserId(userService.GetUserId);
             if (!course.IsSuccessStatusCode)
             {
-                var problemDetails= JsonSerializer.Deserialize<ProblemDetails>(course.Error.Content!);
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(course.Error.Content!);
                 logger.LogError("kurs listelenmesinde error");
                 return ServiceResult<List<CourseViewModel>>.Error("Kurslar yüklenemedi");
             }
@@ -69,6 +69,17 @@ namespace CourseSales.Web.Services
                     c.Feature.Rating))
                 .ToList();
             return ServiceResult<List<CourseViewModel>>.Success(courseList!);
+        }
+        public async Task<ServiceResult> DeleteCourseAsync(Guid courseId)
+        {
+            var response = await catalogRefitService.DeleteCourseAsync(courseId);
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
+                logger.LogError("kurs silinmesinde error");
+                return ServiceResult.Error("Kurs silinemedi");
+            }
+            return ServiceResult.Success();
         }
     }
 }

@@ -15,5 +15,14 @@ namespace CourseSales.Web.Pages.Instructor
 
             Courses= result.Data!;
         }
+        public async Task<IActionResult> OnGetDeleteAsync(Guid id)
+        {
+            var result = await catalogService.DeleteCourseAsync(id);
+            if (result.IsFail)
+            {
+
+            }
+            return RedirectToPage();
+        }
     }
 }

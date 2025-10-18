@@ -24,7 +24,7 @@ namespace CourseSales.Web.Services.Refit
         Task<ApiResponse<Object>> UpdateCourseAsync(UpdateCourseRequest request);
 
 
-        [Delete("/v1/catalog/courses/{id}")]
+        [Delete("/api/v1/courses/{id}")]
         Task<ApiResponse<Object>> DeleteCourseAsync(Guid id);
     }
 }

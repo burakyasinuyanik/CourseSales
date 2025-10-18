@@ -20,7 +20,7 @@ else
         {
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                 <div class="card h-100">
-                    <img src="@(string.IsNullOrWhiteSpace(course.ImageUrl) ? Url.Content("~/assets/images/placeholder.png") : course.ImageUrl)" class="card-img-top" alt="@course.Name" style="height:160px;object-fit:cover;" />
+                   <course-thumbnail-picture src="@course.ImageUrl"></course-thumbnail-picture>
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">@course.Name</h5>
                         <p class="card-subtitle text-muted mb-2">@course.CategoryName</p>
@@ -35,10 +35,11 @@ else
                             <div class="btn-group" role="group">
                                 <a asp-page="/Instructor/EditCourse" asp-route-id="@course.Id" class="btn btn-sm btn-outline-primary">Düzenle</a>
                                 <a asp-page="/Instructor/Details" asp-route-id="@course.Id" class="btn btn-sm btn-outline-secondary">Detay</a>
-                                <form method="post" asp-page-handler="Delete" asp-route-id="@course.Id" onsubmit="return confirm('Kaydı silmek istediğinize emin misiniz?');" class="d-inline">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
-                                </form>
+                                <a asp-page-handler="Delete" asp-route-id="@course.Id" class="btn btn-sm btn-outline-danger">
+                                    Sil
+                                </a>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

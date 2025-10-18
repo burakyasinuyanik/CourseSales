@@ -3,6 +3,7 @@
     public class MicroServiceOption
     {
         public required MicroServiceOptionItem Catalog { get; set; }
+        public required MicroServiceOptionItem File { get; set; }
     }
     public class MicroServiceOptionItem
     {

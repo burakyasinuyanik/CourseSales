@@ -1,8 +1,9 @@
 ﻿using CourseSales.Bus.Command;
+using CourseSales.Shared.Services;
 
 namespace CourseSales.Catalog.Api.Features.Courses.Create
 {
-    public class CreateCourseCommandHandler(AppDbContext context, IMapper mapper,IPublishEndpoint publishEndpoint) : IRequestHandler<CreateCourseCommand, ServiceResult<Guid>>
+    public class CreateCourseCommandHandler(AppDbContext context, IMapper mapper,IPublishEndpoint publishEndpoint,IIdentityService identityService) : IRequestHandler<CreateCourseCommand, ServiceResult<Guid>>
     {
         public async Task<ServiceResult<Guid>> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
         {
@@ -28,6 +29,7 @@ namespace CourseSales.Catalog.Api.Features.Courses.Create
 
             newCourse.Created = DateTime.Now;
             newCourse.Id = Guid.CreateVersion7();
+            newCourse.UserId = identityService.GetUserId;
             context.Courses.Add(newCourse);
             await context.SaveChangesAsync(cancellationToken);
             if(request.Picture is not null)

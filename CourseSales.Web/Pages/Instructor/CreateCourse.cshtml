@@ -25,7 +25,9 @@
     </div>
     <div class="mb-3">
         <label asp-for="CreateCourseViewModel.CategoryId" class="form-label"></label>
-        <select asp-for="CreateCourseViewModel.CategoryId" asp-items="Model.CreateCourseViewModel.CategoryDropdownList" class="form-control"></select>
+        <select asp-for="CreateCourseViewModel.CategoryId" asp-items="Model.CreateCourseViewModel.CategoryDropdownList" class="form-control">
+            <option value="">Kategori Seçiniz</option>
+        </select>
         <span asp-validation-for="CreateCourseViewModel.CategoryId" class="text-danger"></span>
     </div>
     <div class="mb-3">
