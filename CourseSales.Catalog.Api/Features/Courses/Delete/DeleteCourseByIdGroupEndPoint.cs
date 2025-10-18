@@ -29,7 +29,8 @@
                 return result.ToGenericResult();
             })
                 .WithName("DeleteDiscount")
-            .MapToApiVersion(1, 0);
+            .MapToApiVersion(1, 0)
+            .RequireAuthorization(policyNames: "instructor"); ;
             return group;
         }
     }

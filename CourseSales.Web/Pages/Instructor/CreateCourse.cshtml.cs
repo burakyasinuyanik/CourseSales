@@ -14,7 +14,7 @@ namespace CourseSales.Web.Pages.Instructor
 
         public async Task OnGet()
         {
-            // Kategori listesini doldurmak için örnek kod
+           
             var categoriesResult = await catalogService.GetCategoriesAsync();
             if (categoriesResult.IsFail)
             {
@@ -23,21 +23,16 @@ namespace CourseSales.Web.Pages.Instructor
             CreateCourseViewModel.SetCategoryDropdownList(categoriesResult.Data!);
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+         
+            var createCourseResult = await catalogService.CreateCourseAsync(CreateCourseViewModel);
+            if (createCourseResult.IsFail)
             {
-                // Kategori listesini tekrar doldur
-                var categories = new List<CategoryViewModel> {
-                    new CategoryViewModel (Guid.NewGuid(),  "Software" ),
-                    new CategoryViewModel (Guid.NewGuid(), "Design")
-                };
-                CreateCourseViewModel.SetCategoryDropdownList(categories);
-                return Page();
+                
             }
-            // Kurs ekleme iþlemi burada yapýlacak
-            // ...
-            return RedirectToPage("/Index");
+
+            return RedirectToPage("Courses");
         }
     }
 }

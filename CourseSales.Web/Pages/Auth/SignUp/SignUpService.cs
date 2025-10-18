@@ -36,7 +36,7 @@ namespace CourseSales.Web.Pages.Auth.SignUp
         
         {
             var token = await GetClientCredentialTokenAsAdmin();
-            var address = $"{identityOption.Admin.BaseAddress}/admin/realms/CourseSalesTenant/users";
+            var address = $"{identityOption.BaseAddress}/admin/realms/CourseSalesTenant/users";
             httpClient.SetBearerToken(token);
             var userCreateRequest = ToUserCreateRequest(model);
             var response = await httpClient.PostAsJsonAsync(address,userCreateRequest);
@@ -58,13 +58,13 @@ namespace CourseSales.Web.Pages.Auth.SignUp
         {
             var discoveryRequest = new DiscoveryDocumentRequest()
             {
-                Address = identityOption.Admin.Address,
+                Address = identityOption.BaseAddress,
                 Policy =
                 {
                     RequireHttps = false
                 }
             };
-            httpClient.BaseAddress = new Uri(identityOption.Admin.Address);
+            httpClient.BaseAddress = new Uri(identityOption.BaseAddress);
             var discoveryResponse = await httpClient.GetDiscoveryDocumentAsync();
             if(discoveryResponse.IsError)
             {

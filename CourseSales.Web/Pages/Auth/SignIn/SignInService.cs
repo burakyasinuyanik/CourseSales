@@ -38,13 +38,13 @@ namespace CourseSales.Web.Pages.Auth.SignIn
         {
             var discoveryRequest = new DiscoveryDocumentRequest()
             {
-                Address = identityOption.Admin.Address,
+                Address = identityOption.Address,
                 Policy =
                 {
                     RequireHttps = false
                 }
             };
-            httpClient.BaseAddress = new Uri(identityOption.Admin.Address);
+            httpClient.BaseAddress = new Uri(identityOption.Address);
             var discoveryResponse = await httpClient.GetDiscoveryDocumentAsync();
             if (discoveryResponse.IsError)
             {

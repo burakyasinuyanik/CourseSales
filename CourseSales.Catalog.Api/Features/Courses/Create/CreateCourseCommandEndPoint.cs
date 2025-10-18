@@ -19,7 +19,8 @@ namespace CourseSales.Catalog.Api.Features.Courses.Create
             .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
             .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
             .MapToApiVersion(1, 0)
-            .DisableAntiforgery();
+            .DisableAntiforgery()
+            .RequireAuthorization(policyNames:"instructor");
             
 
             return group;

@@ -41,7 +41,8 @@ namespace CourseSales.Catalog.Api.Features.Courses.Update
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
             }).AddEndpointFilter<ValidationFilter<UpdateCourseCommand>>()
-            .MapToApiVersion(1, 0);
+            .MapToApiVersion(1, 0)
+            .RequireAuthorization(policyNames: "instructor"); ;
 
             return group;
         }

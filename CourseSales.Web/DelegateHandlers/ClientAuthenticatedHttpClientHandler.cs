@@ -21,7 +21,7 @@ namespace CourseSales.Web.DelegateHandlers
                 return await base.SendAsync(request, cancellationToken);
 
             }
-            var tokenResponse = await tokenService.GetTokenByClientCredentials();
+            var tokenResponse = await tokenService.GetClientAccessToken();
             if (tokenResponse.IsError) { throw new UnauthorizedAccessException($"{tokenResponse.Error}"); }
 
             request.SetBearerToken(tokenResponse.AccessToken!);
