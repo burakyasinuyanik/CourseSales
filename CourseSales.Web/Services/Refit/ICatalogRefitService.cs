@@ -5,7 +5,7 @@ namespace CourseSales.Web.Services.Refit
 {
     public interface ICatalogRefitService
     {
-        [Get("/v1/categories")]
+        [Get("/api/v1/categories")]
         Task<ApiResponse<List<CategoryDto>>> GetCategoriesAync();
 
 

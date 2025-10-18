@@ -1,10 +1,12 @@
 using CourseSales.Web.Pages.Instructor.ViewModel;
 using CourseSales.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CourseSales.Web.Pages.Instructor
 {
+    [Authorize(Roles = "instructor")]
     public class CreateCourseModel(CatalogService catalogService) : PageModel
     {
         [BindProperty]

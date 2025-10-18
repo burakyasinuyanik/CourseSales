@@ -71,16 +71,19 @@ namespace CourseSales.Web.Services
         }
 
         public async Task<TokenResponse> GetTokenByClientCredentials()
+        
         {
             var discoveryRequest = new DiscoveryDocumentRequest()
             {
-                Address = identityOption.Admin.Address,
+                Address = identityOption.Web.Address,
                 Policy =
                 {
                     RequireHttps = false
                 }
             };
-            httpClient.BaseAddress = new Uri(identityOption.Admin.Address);
+            if(httpClient.BaseAddress is null)
+            httpClient.BaseAddress = new Uri(identityOption.Web.Address);
+            
             var discoveryResponse = await httpClient.GetDiscoveryDocumentAsync();
             if (discoveryResponse.IsError)
             {
@@ -88,9 +91,9 @@ namespace CourseSales.Web.Services
             }
             var tokenResponse = await httpClient.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
-                Address = identityOption.Admin.Address,
-                ClientId = identityOption.Admin.ClientId,
-                ClientSecret = identityOption.Admin.ClientSecret,
+                Address = discoveryResponse.TokenEndpoint,
+                ClientId = identityOption.Web.ClientId,
+                ClientSecret = identityOption.Web.ClientSecret,
                
             });
             return tokenResponse;

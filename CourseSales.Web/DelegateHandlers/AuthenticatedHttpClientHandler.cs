@@ -15,7 +15,7 @@ namespace CourseSales.Web.DelegateHandlers
                 return await base.SendAsync(request, cancellationToken);
             }
             var user= httpContextAccessor.HttpContext.User;
-            if (user.Identity is not null || !user.Identity!.IsAuthenticated)
+            if (!user.Identity!.IsAuthenticated)
             {
                 return await base.SendAsync(request, cancellationToken);
 

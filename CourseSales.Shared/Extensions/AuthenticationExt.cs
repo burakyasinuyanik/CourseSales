@@ -30,9 +30,9 @@ namespace CourseSales.Shared.Extensions
 
                         ValidateIssuerSigningKey = true,
 
-                        RoleClaimType = "roles",
+                        RoleClaimType = ClaimTypes.Role,
 
-                        NameClaimType= "preferred_username"
+                        NameClaimType = ClaimTypes.NameIdentifier
                     };
                 })
                 .AddJwtBearer("ClientCredentialSchema", options =>
@@ -59,7 +59,7 @@ namespace CourseSales.Shared.Extensions
                 {
                     policy.AuthenticationSchemes.Add("ClientCredentialSchema");
                     policy.RequireAuthenticatedUser();
-                    policy.RequireClaim("client_id");
+                    
                 });
                 options.AddPolicy("Password", policy =>
                 {
