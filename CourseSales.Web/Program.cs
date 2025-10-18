@@ -21,9 +21,10 @@ builder.Services.AddHttpClient<SignUpService>(options =>
 });
 builder.Services.AddHttpClient<SignInService>();
 builder.Services.AddScoped<TokenService>();
-builder.Services.AddSingleton<CatalogService>();
+builder.Services.AddScoped<CatalogService>();
 builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
 builder.Services.AddScoped<ClientAuthenticatedHttpClientHandler>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddRefitClient<ICatalogRefitService>()
     .ConfigureHttpClient(c =>

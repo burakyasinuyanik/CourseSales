@@ -132,6 +132,20 @@ namespace CourseSales.Web.Services
             };
 
         }
+        public new static ServiceResult<T> Error(string title)
+        {
+
+            return new ServiceResult<T>()
+            {
+                Fail = new ProblemDetails()
+                {
+                    Title = title,
+
+                    
+                }
+            };
+
+        }
     }
 
 }

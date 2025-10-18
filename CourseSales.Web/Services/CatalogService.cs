@@ -1,4 +1,5 @@
-﻿using CourseSales.Web.Pages.Instructor.ViewModel;
+﻿using CourseSales.Web.Pages.Instructor.Dto;
+using CourseSales.Web.Pages.Instructor.ViewModel;
 using CourseSales.Web.Services.Refit;
 using Microsoft.AspNetCore.Mvc;
 using Refit;
@@ -8,7 +9,8 @@ using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 
 namespace CourseSales.Web.Services
 {
-    public class CatalogService(ICatalogRefitService catalogRefitService, ILogger<CatalogService> logger)
+    public class CatalogService(ICatalogRefitService catalogRefitService,
+        UserService userService,ILogger<CatalogService> logger)
     {
         public async Task<ServiceResult<List<CategoryViewModel>>> GetCategoriesAsync()
         {
@@ -33,7 +35,7 @@ namespace CourseSales.Web.Services
 
             if (model.PictureFormFile is not null && model.PictureFormFile.Length > 0)
             {
-               
+
                 pictureStreamPart = new StreamPart(stream!, model.PictureFormFile.FileName, model.PictureFormFile.ContentType);
 
             }
@@ -45,6 +47,28 @@ namespace CourseSales.Web.Services
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
             }
             return ServiceResult.Success();
+        }
+        public async Task<ServiceResult<List<CourseViewModel>>> GetCoursesByUserId()
+        {
+            var course = await catalogRefitService.GetCourseByUserId(userService.GetUserId);
+            if (!course.IsSuccessStatusCode)
+            {
+                var problemDetails= JsonSerializer.Deserialize<ProblemDetails>(course.Error.Content!);
+                logger.LogError("kurs listelenmesinde error");
+                return ServiceResult<List<CourseViewModel>>.Error("Kurslar yüklenemedi");
+            }
+            var courseList = course.Content?
+                .Select(c => new CourseViewModel(
+                    c.Id,
+                    c.Name,
+                    c.Description,
+                    c.Price,
+                    c.ImageUrl,
+                    c.Category.Name,
+                    c.Feature.Duration,
+                    c.Feature.Rating))
+                .ToList();
+            return ServiceResult<List<CourseViewModel>>.Success(courseList!);
         }
     }
 }
