@@ -1,0 +1,32 @@
+﻿
+<div class="dropdown d-inline-block">
+    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img class="rounded-circle header-profile-user" src="~/assets/images/users/avatar-4.jpg"
+             alt="Header Avatar">
+        <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                @User.Identity.Name
+            }
+            else
+            {
+                <text>Misafir</text>
+            }
+        </span>
+        <i class="uil-angle-down d-none d-xl-inline-block font-size-15"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-end">
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <a class="dropdown-item" href="#"><i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span class="align-middle">Profilim</span></a>
+
+            <a asp-page="/Auth/SignIn" asp-page-handler="SignOut" class="dropdown-item"><i class="uil uil-sign-out-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">Çıkış Yap</span></a>
+
+        }
+        else
+        {
+            <a class="dropdown-item" asp-area="" asp-page="/Auth/SignIn"><i class="uil uil-sign-in-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">Giriş Yap</span></a>
+        }
+    </div>
+</div>

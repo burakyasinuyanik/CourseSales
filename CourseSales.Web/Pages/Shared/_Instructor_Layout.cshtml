@@ -21,7 +21,7 @@
 </head>
 
 
-<body>
+<body  data-bs-theme="dark" data-topbar="dark" data-sidebar="dark">
 
     <!-- <body data-layout="horizontal" data-topbar="colored"> -->
     <!-- Begin page -->
@@ -88,86 +88,9 @@
                         </div>
                     </div>
 
-                    <div class="dropdown d-inline-block language-switch">
-                        <button type="button" class="btn header-item waves-effect"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="~/assets/images/flags/us.jpg" alt="Header Language" height="16">
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
+             
 
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <img src="~/assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <img src="~/assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <img src="~/assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <img src="~/assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="dropdown d-none d-lg-inline-block ms-1">
-                        <button type="button" class="btn header-item noti-icon waves-effect"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="uil-apps"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                            <div class="px-lg-2">
-                                <div class="row g-0">
-                                    <div class="col">
-                                        <a class="dropdown-icon-item" href="#">
-                                            <img src="~/assets/images/brands/github.png" alt="Github">
-                                            <span>GitHub</span>
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <a class="dropdown-icon-item" href="#">
-                                            <img src="~/assets/images/brands/bitbucket.png" alt="bitbucket">
-                                            <span>Bitbucket</span>
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <a class="dropdown-icon-item" href="#">
-                                            <img src="~/assets/images/brands/dribbble.png" alt="dribbble">
-                                            <span>Dribbble</span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="row g-0">
-                                    <div class="col">
-                                        <a class="dropdown-icon-item" href="#">
-                                            <img src="~/assets/images/brands/dropbox.png" alt="dropbox">
-                                            <span>Dropbox</span>
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <a class="dropdown-icon-item" href="#">
-                                            <img src="~/assets/images/brands/mail_chimp.png" alt="mail_chimp">
-                                            <span>Mail Chimp</span>
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <a class="dropdown-icon-item" href="#">
-                                            <img src="~/assets/images/brands/slack.png" alt="slack">
-                                            <span>Slack</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  
 
                     <div class="dropdown d-none d-lg-inline-block ms-1">
                         <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
@@ -270,43 +193,9 @@
                         </div>
                     </div>
 
-                    <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="~/assets/images/users/avatar-4.jpg"
-                                 alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">
-                                @if (User.Identity != null && User.Identity.IsAuthenticated)
-                                {
-                                    @User.Identity.Name
-                                }
-                                else
-                                {
-                                    <text>Misafir</text>
-                                }
-                            </span>
-                            <i class="uil-angle-down d-none d-xl-inline-block font-size-15"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            @if (User.Identity != null && User.Identity.IsAuthenticated)
-                            {
-                                <a class="dropdown-item" href="#"><i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span class="align-middle">Profilim</span></a>
+                    <partial name="_Instructor_Auth_Identity_Header" />
 
-                                <a asp-page="/Auth/SignIn" asp-page-handler="SignOut" class="dropdown-item"><i class="uil uil-sign-out-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">Çıkış Yap</span></a>
-
-                            }
-                            else
-                            {
-                                <a class="dropdown-item" asp-area="" asp-page="/Auth/SignIn"><i class="uil uil-sign-in-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">Giriş Yap</span></a>
-                            }
-                        </div>
-                    </div>
-
-                    <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                            <i class="uil-cog"></i>
-                        </button>
-                    </div>
+                   
 
                 </div>
             </div>
@@ -348,13 +237,23 @@
                         <li class="menu-title">Menu</li>
 
                         <li>
-                            <a href="index.html">
+                            <a asp-page="/Instructor/Index">
                                 <i class="uil-home-alt"></i><span class="badge rounded-pill bg-primary float-end">01</span>
                                 <span>Home</span>
                             </a>
                         </li>
-
-
+                        <li>
+                            <a asp-page="/Instructor/Course">
+                                <i class="uil-home-alt"></i><span class="badge rounded-pill bg-primary float-end">01</span>
+                                <span>Kurslarım</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-page="/Instructor/CreateCourse">
+                                <i class="uil-home-alt"></i><span class="badge rounded-pill bg-primary float-end">01</span>
+                                <span>Kurs Ekle</span>
+                            </a>
+                        </li>
 
 
 
@@ -419,129 +318,8 @@
 
     </div>
     <!-- END layout-wrapper -->
-    <!-- Right Sidebar -->
-    <div class="right-bar">
-        <div data-simplebar class="h-100">
-            <div class="rightbar-title d-flex align-items-center p-3">
-
-                <h5 class="m-0 me-2">Settings</h5>
-
-                <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                    <i class="mdi mdi-close noti-icon"></i>
-                </a>
-            </div>
-
-            <!-- Settings -->
-            <hr class="m-0" />
-
-            <div class="p-4">
-                <h6 class="mb-3">Layout</h6>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="layout"
-                           id="layout-vertical" value="vertical">
-                    <label class="form-check-label" for="layout-vertical">Vertical</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="layout"
-                           id="layout-horizontal" value="horizontal">
-                    <label class="form-check-label" for="layout-horizontal">Horizontal</label>
-                </div>
-
-                <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="layout-mode"
-                           id="layout-mode-light" value="light">
-                    <label class="form-check-label" for="layout-mode-light">Light</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="layout-mode"
-                           id="layout-mode-dark" value="dark">
-                    <label class="form-check-label" for="layout-mode-dark">Dark</label>
-                </div>
-
-                <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="layout-width"
-                           id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
-                    <label class="form-check-label" for="layout-width-fuild">Fluid</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="layout-width"
-                           id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed')">
-                    <label class="form-check-label" for="layout-width-boxed">Boxed</label>
-                </div>
-
-                <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="topbar-color"
-                           id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
-                    <label class="form-check-label" for="topbar-color-light">Light</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="topbar-color"
-                           id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
-                    <label class="form-check-label" for="topbar-color-dark">Dark</label>
-                </div>
-
-                <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
-
-                <div class="form-check sidebar-setting">
-                    <input class="form-check-input" type="radio" name="sidebar-size"
-                           id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
-                    <label class="form-check-label" for="sidebar-size-default">Default</label>
-                </div>
-                <div class="form-check sidebar-setting">
-                    <input class="form-check-input" type="radio" name="sidebar-size"
-                           id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'small')">
-                    <label class="form-check-label" for="sidebar-size-compact">Compact</label>
-                </div>
-                <div class="form-check sidebar-setting">
-                    <input class="form-check-input" type="radio" name="sidebar-size"
-                           id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
-                    <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
-                </div>
-
-                <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
-
-                <div class="form-check sidebar-setting">
-                    <input class="form-check-input" type="radio" name="sidebar-color"
-                           id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
-                    <label class="form-check-label" for="sidebar-color-light">Light</label>
-                </div>
-                <div class="form-check sidebar-setting">
-                    <input class="form-check-input" type="radio" name="sidebar-color"
-                           id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
-                    <label class="form-check-label" for="sidebar-color-dark">Dark</label>
-                </div>
-                <div class="form-check sidebar-setting">
-                    <input class="form-check-input" type="radio" name="sidebar-color"
-                           id="sidebar-color-colored" value="colored" onchange="document.body.setAttribute('data-sidebar', 'colored')">
-                    <label class="form-check-label" for="sidebar-color-colored">Colored</label>
-                </div>
-
-                <h6 class="mt-4 mb-3 pt-2">Direction</h6>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="layout-direction"
-                           id="layout-direction-ltr" value="ltr">
-                    <label class="form-check-label" for="layout-direction-ltr">LTR</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="layout-direction"
-                           id="layout-direction-rtl" value="rtl">
-                    <label class="form-check-label" for="layout-direction-rtl">RTL</label>
-                </div>
-
-            </div>
-
-        </div> <!-- end slimscroll-menu-->
-    </div>
-    <!-- /Right-bar -->
-    <!-- Right bar overlay-->
-    <div class="rightbar-overlay"></div>
+   
+   
 
     <!-- JAVASCRIPT -->
     <script src="~/assets/libs/jquery/jquery.min.js"></script>

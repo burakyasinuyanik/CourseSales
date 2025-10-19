@@ -1,4 +1,5 @@
 using CourseSales.Web.DelegateHandlers;
+using CourseSales.Web.ExceptionHandlers;
 using CourseSales.Web.Extensions;
 using CourseSales.Web.Options;
 using CourseSales.Web.Pages.Auth.SignIn;
@@ -49,6 +50,7 @@ builder.Services.AddAuthentication(configureOptions =>
         options.LoginPath = "/Auth/SignIn";
         //options.LogoutPath = "/Auth/SignOut";
     });
+builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
 builder.Services.AddAuthorization();
 var app = builder.Build();
 
