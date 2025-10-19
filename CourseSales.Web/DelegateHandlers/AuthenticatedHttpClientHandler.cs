@@ -41,7 +41,11 @@ namespace CourseSales.Web.DelegateHandlers
 
             }
             var tokenResponse= await tokenService.GetTokensByRefreshToken(refreshToken);
-            if(tokenResponse.IsError) throw new UnauthorizedAccessException($"{tokenResponse.Error}");
+            if (tokenResponse.IsError)
+            {
+                throw new UnauthorizedAccessException($"{tokenResponse.Error}");
+                   
+            }
 
             request.SetBearerToken(tokenResponse.AccessToken!);
 
