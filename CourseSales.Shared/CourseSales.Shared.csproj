@@ -19,4 +19,8 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="GlobalExceptionHandlers\GlobalExceptionHandler.cs" />
+  </ItemGroup>
+
 </Project>

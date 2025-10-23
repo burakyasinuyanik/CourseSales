@@ -20,6 +20,7 @@ builder.Services.AddVersioningExt();
 
 
 var app = builder.Build();
+app.UseExceptionHandler(x => { });
 
 app.AddCategoryGroupEndPointExt(app.AddVersionSetExt());
 app.AddCourseGroupEndPointExt(app.AddVersionSetExt());

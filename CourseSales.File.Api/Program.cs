@@ -16,6 +16,7 @@ builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combi
 builder.Services.AddMasstransitExt(builder.Configuration);
 
 var app = builder.Build();
+app.UseExceptionHandler(x => { });
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

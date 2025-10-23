@@ -19,6 +19,7 @@ builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddMasstransitExt(builder.Configuration);
 
 var app = builder.Build();
+app.UseExceptionHandler(x => { });
 
 app.AddDiscountGroupEndPointExt(app.AddVersionSetExt());
 

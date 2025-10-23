@@ -1,5 +1,5 @@
-﻿using CourseSales.Shared.Services;
-using FluentValidation;
+﻿using CourseSales.Shared.GlobalExceptionHandlers;
+using CourseSales.Shared.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +15,7 @@ namespace CourseSales.Shared.Extensions
             services.AddValidatorsFromAssemblyContaining(assembly);
             services.AddAutoMapper(assembly);
             services.AddScoped<IIdentityService, IdentityService>();
+            services.AddExceptionHandler<GlobalExceptionHandler>();
             return services;
         }
     }

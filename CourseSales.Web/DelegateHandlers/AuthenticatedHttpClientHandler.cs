@@ -1,7 +1,9 @@
 ﻿using CourseSales.Web.Services;
 using Duende.IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Security.Claims;
 
 namespace CourseSales.Web.DelegateHandlers
 {
@@ -46,6 +48,11 @@ namespace CourseSales.Web.DelegateHandlers
                 throw new UnauthorizedAccessException($"{tokenResponse.Error}");
                    
             }
+            var authenticationProperties = tokenService.CreateAuthenticationProperties(tokenResponse);
+            var userClaim=httpContextAccessor.HttpContext.User.Claims;
+            var claimIdentity = new ClaimsIdentity(userClaim, CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name,ClaimTypes.Role);
+            var claimsPrincipal = new ClaimsPrincipal(claimIdentity);
+            await httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authenticationProperties);
 
             request.SetBearerToken(tokenResponse.AccessToken!);
 
