@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 
 builder.Services.AddOpenApi();
 builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
@@ -31,6 +33,8 @@ builder.Services.AddCommonMasstransitExt(builder.Configuration);
 builder.Services.AddRefitConfigurationExt(builder.Configuration);
 builder.Services.AddHostedService<CheckPaymentStatusOrderBackgroundService>();
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 app.UseExceptionHandler(x => { });
 
 if (app.Environment.IsDevelopment())

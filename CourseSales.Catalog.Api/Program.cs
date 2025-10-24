@@ -6,6 +6,8 @@ using CourseSales.Bus;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -20,6 +22,8 @@ builder.Services.AddVersioningExt();
 
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 app.UseExceptionHandler(x => { });
 
 app.AddCategoryGroupEndPointExt(app.AddVersionSetExt());
@@ -32,7 +36,7 @@ app.AddSeedDataExt().ContinueWith(x =>
     }
     else
     {
-        Console.WriteLine("seed data yüklendi.");
+        Console.WriteLine("seed data yÃ¼klendi.");
     }
 });
 

@@ -5,6 +5,8 @@ using CourseSales.Bus;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,6 +27,8 @@ builder.Services.AddStackExchangeRedisCache(options =>
 
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 app.UseExceptionHandler(x => { });
 if (app.Environment.IsDevelopment())

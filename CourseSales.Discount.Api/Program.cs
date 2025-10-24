@@ -7,6 +7,8 @@ using CourseSales.Bus;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
@@ -19,6 +21,8 @@ builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddMasstransitExt(builder.Configuration);
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 app.UseExceptionHandler(x => { });
 
 app.AddDiscountGroupEndPointExt(app.AddVersionSetExt());
@@ -26,7 +30,7 @@ app.AddDiscountGroupEndPointExt(app.AddVersionSetExt());
 app.AddSeedDataExt().ContinueWith(x =>
 {
     if (!x.IsFaulted)
-        Console.WriteLine("seed data yüklendi");
+        Console.WriteLine("seed data yÃ¼klendi");
     else Console.WriteLine(x.Exception.Message);
 });
 

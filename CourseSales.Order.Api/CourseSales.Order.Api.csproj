@@ -21,6 +21,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\CourseSales.Order.Application\CourseSales.Order.Application.csproj" />
 		<ProjectReference Include="..\CourseSales.Order.Persistence\CourseSales.Order.Persistence.csproj" />
+		<ProjectReference Include="..\CourseSales.ServiceDefaults\CourseSales.ServiceDefaults.csproj" />
 	</ItemGroup>
 
 </Project>

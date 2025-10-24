@@ -57,6 +57,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{BA00EF33-58B9-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.Web", "CourseSales.Web\CourseSales.Web.csproj", "{29302471-AD20-4502-82E6-F669FEFA2B2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.AppHost", "CourseSales.AppHost\CourseSales.AppHost.csproj", "{11706578-736E-4186-BF08-D6E2C897932C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.ServiceDefaults", "CourseSales.ServiceDefaults\CourseSales.ServiceDefaults.csproj", "{66AAC084-08FA-96BE-824E-E3A0B4F3F5A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +123,14 @@ Global
 		{29302471-AD20-4502-82E6-F669FEFA2B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29302471-AD20-4502-82E6-F669FEFA2B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29302471-AD20-4502-82E6-F669FEFA2B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11706578-736E-4186-BF08-D6E2C897932C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11706578-736E-4186-BF08-D6E2C897932C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11706578-736E-4186-BF08-D6E2C897932C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11706578-736E-4186-BF08-D6E2C897932C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66AAC084-08FA-96BE-824E-E3A0B4F3F5A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66AAC084-08FA-96BE-824E-E3A0B4F3F5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66AAC084-08FA-96BE-824E-E3A0B4F3F5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66AAC084-08FA-96BE-824E-E3A0B4F3F5A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

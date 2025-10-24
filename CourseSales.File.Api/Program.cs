@@ -5,6 +5,8 @@ using Microsoft.Extensions.FileProviders;
 using CourseSales.Bus;
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
@@ -16,6 +18,8 @@ builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combi
 builder.Services.AddMasstransitExt(builder.Configuration);
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 app.UseExceptionHandler(x => { });
 
 // Configure the HTTP request pipeline.

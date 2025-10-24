@@ -6,6 +6,8 @@ using CourseSales.Bus;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 
 builder.Services.AddOpenApi();
 builder.Services.AddCommonServiceExt(typeof(PaymentAssembly));
@@ -20,6 +22,8 @@ builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 app.UseExceptionHandler(x => { });
 app.AddPaymentGroupEntPointExt(app.AddVersionSetExt());
 

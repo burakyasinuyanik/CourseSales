@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>a391b289-6bee-4b45-8435-cc11fb543ed6</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
+    <PackageReference Include="Aspire.Hosting.MongoDB" Version="9.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CourseSales.Basket.Api\CourseSales.Basket.Api.csproj" />
+    <ProjectReference Include="..\CourseSales.Catalog.Api\CourseSales.Catalog.Api.csproj" />
+    <ProjectReference Include="..\CourseSales.Discount.Api\CourseSales.Discount.Api.csproj" />
+    <ProjectReference Include="..\CourseSales.File.Api\CourseSales.File.Api.csproj" />
+    <ProjectReference Include="..\CourseSales.Gateway\CourseSales.Gateway.csproj" />
+    <ProjectReference Include="..\CourseSales.Order.Api\CourseSales.Order.Api.csproj" />
+    <ProjectReference Include="..\CourseSales.Payment.Api\CourseSales.Payment.Api.csproj" />
+    <ProjectReference Include="..\CourseSales.Web\CourseSales.Web.csproj" />
+  </ItemGroup>
+
+</Project>
