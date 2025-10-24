@@ -132,6 +132,54 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     volumes: 
       - rabbitmq.volume:/var/lib/rabbitmq
+ coursesales.basket.api:
+    image: coursesalesbasketapi
+    build:
+      context: .
+      dockerfile: CourseSales.Basket.Api/Dockerfile
+
+ coursesales.catalog.api:
+    image: coursesalescatalogapi
+    build:
+      context: .
+      dockerfile: CourseSales.Catalog.Api/Dockerfile
+
+ coursesales.discount.api:
+    image: coursesalesdiscountapi
+    build:
+      context: .
+      dockerfile: CourseSales.Discount.Api/Dockerfile
+
+ coursesales.file.api:
+    image: coursesalesfileapi
+    build:
+      context: .
+      dockerfile: CourseSales.File.Api/Dockerfile
+
+ coursesales.gateway:
+    image: coursesalesgateway
+    build:
+      context: .
+      dockerfile: CourseSales.Gateway/Dockerfile
+
+ coursesales.order.api:
+    image: coursesalesorderapi
+    build:
+      context: .
+      dockerfile: CourseSales.Order.Api/Dockerfile
+
+ coursesales.payment.api:
+    image: coursesalespaymentapi
+    build:
+      context: .
+      dockerfile: CourseSales.Payment.Api/Dockerfile
+
+ coursesales.web:
+    image: coursesalesweb
+    build:
+      context: .
+      dockerfile: CourseSales.Web/Dockerfile
+
 volumes:
   mongo.db.catalog.volume:
   mongo.db.discount.volume:
@@ -140,3 +188,10 @@ volumes:
   posrgres.db.keycloak.volume:
   posrgres.db.keycloak.ui.volume:
   rabbitmq.volume:  
+
+
+
+
+
+
+

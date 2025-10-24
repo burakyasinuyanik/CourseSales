@@ -14,7 +14,7 @@ namespace CourseSales.File.Api.Features.Files
                 .WithTags("files")
                 .WithApiVersionSet(apiVersionSet)
                 .DisableAntiforgery()
-                .RequireAuthorization();
+                ;
         }
     }
 }

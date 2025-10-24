@@ -12,8 +12,10 @@ namespace CourseSales.File.Api.Consumers
             {
                 var fileProvider = serviceProvider.GetRequiredService<IFileProvider>();
                 var newFileName = $"{Guid.NewGuid()}{Path.GetExtension(context.Message.FileName)}";
-                var upLoadPath = Path.Combine(fileProvider.GetFileInfo("files").PhysicalPath!, newFileName);
-               await System.IO.File.WriteAllBytesAsync(upLoadPath, context.Message.Picture);
+                //var upLoadPath = Path.Combine(fileProvider.GetFileInfo("files").PhysicalPath!, newFileName);,
+                var upLoadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "files", newFileName);
+
+                await System.IO.File.WriteAllBytesAsync(upLoadPath, context.Message.Picture);
                 var publishEndpoint = serviceProvider.GetRequiredService<IPublishEndpoint>();
 
                 await publishEndpoint.Publish(new CoursePictureUploadedEvent(context.Message.CourseId, $"/files/{newFileName}"));

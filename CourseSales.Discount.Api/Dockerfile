@@ -13,6 +13,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["CourseSales.Discount.Api/CourseSales.Discount.Api.csproj", "CourseSales.Discount.Api/"]
+COPY ["CourseSales.Bus/CourseSales.Bus.csproj", "CourseSales.Bus/"]
 COPY ["CourseSales.Shared/CourseSales.Shared.csproj", "CourseSales.Shared/"]
 RUN dotnet restore "./CourseSales.Discount.Api/CourseSales.Discount.Api.csproj"
 COPY . .

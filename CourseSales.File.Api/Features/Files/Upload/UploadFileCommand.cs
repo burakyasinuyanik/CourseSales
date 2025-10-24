@@ -19,7 +19,8 @@ namespace CourseSales.File.Api.Features.Files.Upload
 
             
             var newFileName=$"{Guid.NewGuid()}{Path.GetExtension(request.File.FileName)}";
-            var upLoadPath = Path.Combine(fileProvider.GetFileInfo("files").PhysicalPath!, newFileName);
+            //var upLoadPath = Path.Combine(fileProvider.GetFileInfo("files").PhysicalPath, newFileName);
+            var upLoadPath= Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "files", newFileName);
             await using var stream = new FileStream(upLoadPath, FileMode.Create);
 
             await request.File.CopyToAsync(stream,cancellationToken);

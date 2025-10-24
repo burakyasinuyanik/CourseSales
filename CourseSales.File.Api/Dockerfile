@@ -12,21 +12,21 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["CourseSales.Basket.Api/CourseSales.Basket.Api.csproj", "CourseSales.Basket.Api/"]
+COPY ["CourseSales.File.Api/CourseSales.File.Api.csproj", "CourseSales.File.Api/"]
 COPY ["CourseSales.Bus/CourseSales.Bus.csproj", "CourseSales.Bus/"]
 COPY ["CourseSales.Shared/CourseSales.Shared.csproj", "CourseSales.Shared/"]
-RUN dotnet restore "./CourseSales.Basket.Api/CourseSales.Basket.Api.csproj"
+RUN dotnet restore "./CourseSales.File.Api/CourseSales.File.Api.csproj"
 COPY . .
-WORKDIR "/src/CourseSales.Basket.Api"
-RUN dotnet build "./CourseSales.Basket.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/CourseSales.File.Api"
+RUN dotnet build "./CourseSales.File.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./CourseSales.Basket.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./CourseSales.File.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CourseSales.Basket.Api.dll"]
+ENTRYPOINT ["dotnet", "CourseSales.File.Api.dll"]

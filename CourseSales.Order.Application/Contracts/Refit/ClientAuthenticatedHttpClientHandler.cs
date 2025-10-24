@@ -26,7 +26,7 @@ namespace CourseSales.Order.Application.Contracts.Refit
             };
             var client = httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(identityOption.Address);
-            var discoveryResponse = await client.GetDiscoveryDocumentAsync();
+            var discoveryResponse = await client.GetDiscoveryDocumentAsync(discoveryRequest);
             if (discoveryResponse.IsError)
                 throw new Exception($"Discovery hata{discoveryResponse.Error}");
 

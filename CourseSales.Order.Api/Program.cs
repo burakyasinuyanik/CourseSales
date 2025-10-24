@@ -31,7 +31,7 @@ builder.Services.AddCommonMasstransitExt(builder.Configuration);
 builder.Services.AddRefitConfigurationExt(builder.Configuration);
 builder.Services.AddHostedService<CheckPaymentStatusOrderBackgroundService>();
 var app = builder.Build();
-
+app.UseExceptionHandler(x => { });
 
 if (app.Environment.IsDevelopment())
 {

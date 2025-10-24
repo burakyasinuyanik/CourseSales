@@ -13,6 +13,11 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["CourseSales.Order.Api/CourseSales.Order.Api.csproj", "CourseSales.Order.Api/"]
+COPY ["CourseSales.Order.Application/CourseSales.Order.Application.csproj", "CourseSales.Order.Application/"]
+COPY ["CourseSales.Bus/CourseSales.Bus.csproj", "CourseSales.Bus/"]
+COPY ["CourseSales.Order.Domain/CourseSales.Order.Domain.csproj", "CourseSales.Order.Domain/"]
+COPY ["CourseSales.Shared/CourseSales.Shared.csproj", "CourseSales.Shared/"]
+COPY ["CourseSales.Order.Persistence/CourseSales.Order.Persistence.csproj", "CourseSales.Order.Persistence/"]
 RUN dotnet restore "./CourseSales.Order.Api/CourseSales.Order.Api.csproj"
 COPY . .
 WORKDIR "/src/CourseSales.Order.Api"

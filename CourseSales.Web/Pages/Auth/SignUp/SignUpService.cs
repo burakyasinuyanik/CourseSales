@@ -65,7 +65,7 @@ namespace CourseSales.Web.Pages.Auth.SignUp
                 }
             };
             httpClient.BaseAddress = new Uri(identityOption.BaseAddress);
-            var discoveryResponse = await httpClient.GetDiscoveryDocumentAsync();
+            var discoveryResponse = await httpClient.GetDiscoveryDocumentAsync(discoveryRequest);
             if(discoveryResponse.IsError)
             {
                 throw new Exception(discoveryResponse.Error);

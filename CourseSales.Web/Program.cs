@@ -8,6 +8,7 @@ using CourseSales.Web.Services;
 using CourseSales.Web.Services.Refit;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Refit;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,8 +56,15 @@ builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
 
 builder.Services.AddAuthorization();
 var app = builder.Build();
-
-
+var cultureInfo= new CultureInfo("tr-TR");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(cultureInfo),
+    SupportedCultures =  [cultureInfo ],
+    SupportedUICultures = [cultureInfo]
+});
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");

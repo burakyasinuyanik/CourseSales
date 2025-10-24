@@ -63,7 +63,7 @@ namespace CourseSales.Web.Services
             };
             var client = httpClientFactory.CreateClient("GetTokensByRefreshToken");
             client.BaseAddress = new Uri(identityOption.Address);
-            var discoveryResponse = await client.GetDiscoveryDocumentAsync();
+            var discoveryResponse = await client.GetDiscoveryDocumentAsync(discoveryRequest);
 
             if (discoveryResponse.IsError)
                 throw new Exception($"Discovery document request failed: {discoveryResponse.Error}");
@@ -92,7 +92,7 @@ namespace CourseSales.Web.Services
 
             var client = httpClientFactory.CreateClient("GetClientAccessToken");
             client.BaseAddress = new Uri(identityOption.Address);
-            var discoveryResponse = await client.GetDiscoveryDocumentAsync();
+            var discoveryResponse = await client.GetDiscoveryDocumentAsync(discoveryRequest);
 
 
             if (discoveryResponse.IsError)

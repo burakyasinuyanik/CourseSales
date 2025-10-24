@@ -1,0 +1,107 @@
+services:
+  coursesales.basket.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - BusOption:Address=rabbitmq 
+      - BusOption:Port=5672
+      - IdentityOption:Address=http://keycloak:8080/realms/CourseSalesTenant
+      - IdentityOption:Issuer=http://keycloak:8080/realms/CourseSalesTenant
+      - ConnectionStrings:Redis=redis.db.basket:6379,password=Password12
+    ports:
+      - "8080"
+    depends_on:
+      - redis.db.basket
+      - rabbitmq
+    restart: always
+  coursesales.catalog.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - BusOption:Address=rabbitmq 
+      - BusOption:Port=5672
+      - IdentityOption:Address=http://keycloak:8080/realms/CourseSalesTenant
+      - IdentityOption:Issuer=http://keycloak:8080/realms/CourseSalesTenant
+      - MongoOption:ConnectionString=mongodb://myuser:password12@mongo.db.catalog:27017
+
+    ports:
+      - "8080"
+    depends_on:
+      - mongo.db.catalog
+    restart: always
+  coursesales.discount.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - BusOption:Address=rabbitmq 
+      - BusOption:Port=5672
+      - IdentityOption:Address=http://keycloak:8080/realms/CourseSalesTenant
+      - IdentityOption:Issuer=http://keycloak:8080/realms/CourseSalesTenant
+      - MongoOption:ConnectionString=mongodb://myuser:Password12@mongo.db.discount:27017
+     
+    ports:
+      - "8080"
+    depends_on:
+      - mongo.db.discount
+      - rabbitmq
+    restart: always
+  coursesales.file.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - BusOption:Address=rabbitmq 
+      - BusOption:Port=5672
+      - IdentityOption:Address=http://keycloak:8080/realms/CourseSalesTenant
+      - IdentityOption:Issuer=http://keycloak:8080/realms/CourseSalesTenant
+    ports:
+      - "8080"
+    restart: always
+  coursesales.gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - IdentityOption:Address=http://keycloak:8080/realms/CourseSalesTenant
+      - IdentityOption:Issuer=http://keycloak:8080/realms/CourseSalesTenant
+    ports:
+      - "8080"
+    restart: always
+  coursesales.order.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - BusOption:Address=rabbitmq 
+      - BusOption:Port=5672
+      - IdentityOption:Address=http://keycloak:8080/realms/CourseSalesTenant
+      - IdentityOption:Issuer=http://keycloak:8080/realms/CourseSalesTenant
+      - AddressUrlOption:PaymentUrl=http://coursesales.payment.api:8080
+      - ConnectionStrings:SqlServerOrder=Server=sqlserver.db.order,1433;Database=CourseSalesOrderDb;User=Sa;Password=Password12*;TrustServerCertificate=True;Integrated Security=False;Trusted_Connection=False
+    ports:
+      - "8080"
+    depends_on:
+      - sqlserver.db.order
+     
+    restart: always
+  coursesales.payment.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - BusOption:Address=rabbitmq 
+      - BusOption:Port=5672
+      - IdentityOption:Address=http://keycloak:8080/realms/CourseSalesTenant
+      - IdentityOption:Issuer=http://keycloak:8080/realms/CourseSalesTenant
+    ports:
+      - "8080"
+    restart: always
+  coursesales.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - IdentityOption:Address=http://keycloak:8080/realms/CourseSalesTenant
+      - IdentityOption:Issuer=http://keycloak:8080/realms/CourseSalesTenant
+      - MicroServiceOption:Catalog:BaseUrl=http://coursesales.catalog.api:8080
+      - MicroServiceOption:File:BaseUrl=http://coursesales.file.api:8080
+      
+    ports:
+      - "5050:8080"
+    
+    restart: always
