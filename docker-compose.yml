@@ -152,10 +152,12 @@ services:
 
  coursesales.file.api:
     image: coursesalesfileapi
+    user: root
     build:
       context: .
       dockerfile: CourseSales.File.Api/Dockerfile
-
+    volumes:
+     - coursesales.file.api.volume:/app/wwwroot/files 
  coursesales.gateway:
     image: coursesalesgateway
     build:
@@ -188,6 +190,7 @@ volumes:
   posrgres.db.keycloak.volume:
   posrgres.db.keycloak.ui.volume:
   rabbitmq.volume:  
+  coursesales.file.api.volume:
 
 
 

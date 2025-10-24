@@ -54,7 +54,7 @@ services:
       - IdentityOption:Address=http://keycloak:8080/realms/CourseSalesTenant
       - IdentityOption:Issuer=http://keycloak:8080/realms/CourseSalesTenant
     ports:
-      - "8080"
+      - "5051:8080"
     restart: always
   coursesales.gateway:
     environment:
@@ -99,7 +99,7 @@ services:
       - IdentityOption:Address=http://keycloak:8080/realms/CourseSalesTenant
       - IdentityOption:Issuer=http://keycloak:8080/realms/CourseSalesTenant
       - MicroServiceOption:Catalog:BaseUrl=http://coursesales.catalog.api:8080
-      - MicroServiceOption:File:BaseUrl=http://coursesales.file.api:8080
+      - MicroServiceOption:File:BaseUrl=http://localhost:5051/
       
     ports:
       - "5050:8080"
